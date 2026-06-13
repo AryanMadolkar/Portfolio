@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aryan Madolkar — Developer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #080b10;
+    --surface: #0f1318;
+    --surface2: #161c24;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0f4ff;
+    --muted: #8892a4;
+    --accent: #4f8cff;
+    --accent2: #a855f7;
+    --accent3: #22d3ee;
+    --glow: rgba(79,140,255,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(8,11,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .nav-logo span { color: var(--accent); }
+  nav ul { display: flex; gap: 2.5rem; list-style: none; }
+  nav a {
+    text-decoration: none; color: var(--muted);
+    font-size: 0.875rem; font-weight: 500; letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--text); }
+  .nav-cta {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent) !important;
+    font-size: 0.875rem !important;
+    transition: background 0.2s, color 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: #fff !important; }
+
+  /* HERO */
+  #hero {
+    position: relative;
+    height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  #hero-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.18em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block;
+    width: 40px; height: 1px; background: var(--accent); opacity: 0.5;
+  }
+  .hero-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #f0f4ff 40%, #4f8cff 80%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-role {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+  }
+  .hero-role strong { color: var(--text); font-weight: 500; }
+  .hero-btns {
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    background: var(--accent);
+    color: #fff;
+    border: none; border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(79,140,255,0.35);
+  }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); background: var(--glow); }
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em;
+    animation: bounceY 2s ease-in-out infinite;
+  }
+  .scroll-hint svg { opacity: 0.5; }
+  @keyframes bounceY {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    font-weight: 700; line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .section-desc { color: var(--muted); max-width: 560px; font-size: 1.05rem; line-height: 1.75; }
+
+  /* ABOUT */
+  #about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .about-visual {
+    position: relative;
+  }
+  #about-canvas-wrap {
+    width: 100%; aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: grab;
+  }
+  #about-canvas-wrap:active { cursor: grabbing; }
+  #about-canvas { width: 100%; height: 100%; display: block; }
+  .about-drag-hint {
+    text-align: center; margin-top: 0.75rem;
+    font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em;
+  }
+  .about-text .section-desc { max-width: 100%; margin-bottom: 2rem; }
+  .tech-list {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .tech-pill {
+    padding: 0.35rem 0.85rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.8rem; color: var(--muted);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tech-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* PROJECTS */
+  #projects { }
+  .projects-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+  .projects-header .section-desc { margin-bottom: 0; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .project-card-canvas-wrap {
+    width: 100%; height: 200px;
+    position: relative; overflow: hidden;
+  }
+  .project-card canvas { width: 100% !important; height: 100% !important; display: block; }
+  .project-card-inner { padding: 1.5rem; }
+  .project-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  .badge-ts { background: rgba(79,140,255,0.12); color: #60a5fa; border: 1px solid rgba(79,140,255,0.2); }
+  .badge-html { background: rgba(249,115,22,0.1); color: #fb923c; border: 1px solid rgba(249,115,22,0.2); }
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem; font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: var(--text);
+  }
+  .project-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.25rem; }
+  .project-footer { display: flex; align-items: center; justify-content: space-between; }
+  .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .project-tag {
+    font-size: 0.7rem; color: var(--muted); padding: 0.2rem 0.5rem;
+    border: 1px solid var(--border); border-radius: 4px;
+  }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-size: 0.8rem; color: var(--accent); text-decoration: none;
+    font-weight: 500; opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .project-card:hover .project-link { opacity: 1; }
+
+  /* SKILLS */
+  #skills { }
+  .skills-grid { margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .skill-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .skill-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1rem;
+  }
+  .skill-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .skill-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+  /* CONTACT */
+  #contact {
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 5rem 3rem;
+    max-width: 760px;
+    margin: 0 auto 7rem;
+  }
+  #contact .section-label { justify-content: center; display: flex; }
+  #contact .section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+  #contact p { color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; font-size: 1rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); background: var(--glow); color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--muted); font-size: 0.8rem;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    nav ul { display: none; }
+    section { padding: 5rem 2rem; }
+    #about { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AM<span>.</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Full Stack Developer</div>
+    <h1 class="hero-name">Aryan Madolkar</h1>
+    <p class="hero-role">Building <strong>scalable web apps</strong> with modern stacks — React, TypeScript, Next.js & beyond.</p>
+
+  </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual fade-up">
+    <div id="about-canvas-wrap">
+      <canvas id="about-canvas"></canvas>
+    </div>
+    <p class="about-drag-hint">drag to rotate · scroll to zoom</p>
+  </div>
+  <div class="about-text fade-up">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Developer with a passion for craft</h2>
+    <p class="section-desc" style="margin-bottom:1.5rem">
+      I'm a full-stack developer who loves turning complex problems into clean, elegant products. From AI-powered SaaS platforms to Docker orchestration tools, I build things that are both powerful and delightful to use.
+    </p>
+    <p class="section-desc" style="margin-bottom:2rem">
+      Currently exploring the intersection of AI and developer tooling — building experiences where the tech disappears and the work just flows.
+    </p>
+    <div class="tech-list">
+      <span class="tech-pill">TypeScript</span>
+      <span class="tech-pill">React</span>
+      <span class="tech-pill">Next.js</span>
+      <span class="tech-pill">Node.js</span>
+      <span class="tech-pill">Convex</span>
+      <span class="tech-pill">OpenAI API</span>
+      <span class="tech-pill">Tailwind CSS</span>
+      <span class="tech-pill">Docker</span>
+      <span class="tech-pill">Clerk Auth</span>
+      <span class="tech-pill">Vite</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header fade-up">
+    <div>
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">Things I've built</h2>
+    </div>
+    <p class="section-desc">A selection of projects from my GitHub — each one a chance to learn something new.</p>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Dockflow Pro -->
+    <div class="project-card fade-up" onclick="window.open('https://github.com/AryanMadolkar/Dockflow-Pro','_blank')">
+      <div class="project-card-canvas-wrap">
+        <canvas id="card-canvas-1"></canvas>
+      </div>
+      <div class="project-card-inner">
+        <div class="project-badge badge-ts">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3z" opacity=".1"/><path d="M3 3h18v18H3V3zm16.5 13.5v-3h-4.5v1.5h3v1.5h-3v1.5h4.5v-1.5zM9 12h3v-1.5H9V9h4.5V7.5H7.5V18H9v-6z"/></svg>
+          TypeScript
+        </div>
+        <h3 class="project-title">Dockflow Pro</h3>
+        <p class="project-desc">A professional Docker workflow management tool built with React and TypeScript. Streamlines container orchestration and development environments.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Vite</span>
+            <span class="project-tag">Docker</span>
+          </div>
+          <a class="project-link" href="https://github.com/AryanMadolkar/Dockflow-Pro" target="_blank">
+            View →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Podcastr -->
+    <div class="project-card fade-up" onclick="window.open('https://github.com/AryanMadolkar/podcastr','_blank')">
+      <div class="project-card-canvas-wrap">
+        <canvas id="card-canvas-2"></canvas>
+      </div>
+      <div class="project-card-inner">
+        <div class="project-badge badge-ts">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3z" opacity=".1"/><path d="M3 3h18v18H3V3zm16.5 13.5v-3h-4.5v1.5h3v1.5h-3v1.5h4.5v-1.5zM9 12h3v-1.5H9V9h4.5V7.5H7.5V18H9v-6z"/></svg>
+          TypeScript
+        </div>
+        <h3 class="project-title">Podcastr — AI Podcast Platform</h3>
+        <p class="project-desc">A cutting-edge AI SaaS platform for creating, discovering, and enjoying podcasts. Features text-to-audio AI, multi-voice synthesis, and AI thumbnail generation.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">OpenAI</span>
+            <span class="project-tag">Convex</span>
+            <span class="project-tag">Clerk</span>
+          </div>
+          <a class="project-link" href="https://github.com/AryanMadolkar/podcastr" target="_blank">
+            View →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- University Admissions -->
+    <div class="project-card fade-up">
+      <div class="project-card-canvas-wrap">
+        <canvas id="card-canvas-3"></canvas>
+      </div>
+      <div class="project-card-inner">
+        <div class="project-badge" style="background:rgba(34,211,238,0.1);color:#22d3ee;border:1px solid rgba(34,211,238,0.2);">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Education
+        </div>
+        <h3 class="project-title">UniTrack — Admissions Compass</h3>
+        <p class="project-desc">An intelligent university admissions requirements tracker. Compare entry criteria, deadlines, and eligibility across multiple universities in one clean dashboard.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Dashboard</span>
+            <span class="project-tag">Data Viz</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fantasy Football -->
+    <div class="project-card fade-up">
+      <div class="project-card-canvas-wrap">
+        <canvas id="card-canvas-4"></canvas>
+      </div>
+      <div class="project-card-inner">
+        <div class="project-badge" style="background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.2);">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20M12 2a14.5 14.5 0 010 20M2 12h20"/></svg>
+          Sports
+        </div>
+        <h3 class="project-title">GridironIQ — Fantasy Football Manager</h3>
+        <p class="project-desc">A fantasy football management app with live player stats, draft assistance, team lineup optimisation, and head-to-head matchup predictions.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Live Stats</span>
+            <span class="project-tag">Predictions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Berlin Strike -->
+    <div class="project-card fade-up">
+      <div class="project-card-canvas-wrap">
+        <canvas id="card-canvas-5"></canvas>
+      </div>
+      <div class="project-card-inner">
+        <div class="project-badge" style="background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.2);">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM1 17h4m5 0h5"/><circle cx="5.5" cy="18.5" r="1.5"/><circle cx="18.5" cy="18.5" r="1.5"/></svg>
+          Transit
+        </div>
+        <h3 class="project-title">StrikeAlert Berlin — Transit Disruption Tracker</h3>
+        <p class="project-desc">Real-time Berlin public transport strike tracker. Get live status updates, affected lines, alternative routes, and push notifications for upcoming disruptions.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="project-tag">Real-time</span>
+            <span class="project-tag">Maps</span>
+            <span class="project-tag">Notifications</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Driftlogg -->
+    <div class="project-card fade-up" onclick="window.open('https://github.com/aryanpachori/driftlogg','_blank')">
+      <div class="project-card-canvas-wrap">
+        <canvas id="card-canvas-6"></canvas>
+      </div>
+      <div class="project-card-inner">
+        <div class="project-badge badge-ts">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          TypeScript + Python
+        </div>
+        <h3 class="project-title">Driftlogg — Dependency Health Monitor</h3>
+        <p class="project-desc">A predictive dependency health platform. Connects to GitHub repos, scans every package, and uses XGBoost ML to score each one 0–100 — predicting abandonment 60–90 days before it happens.</p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">XGBoost</span>
+            <span class="project-tag">BullMQ</span>
+            <span class="project-tag">PostgreSQL</span>
+          </div>
+          <a class="project-link" href="https://github.com/aryanpachori/driftlogg" target="_blank">
+            View →
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="max-width:1200px;margin:0 auto">
+  <div class="fade-up" style="text-align:center;max-width:560px;margin:0 auto 3rem">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">What I work with</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(79,140,255,0.1)">
+        <svg width="22" height="22" fill="none" stroke="#4f8cff" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <h3>React &amp; TypeScript</h3>
+      <p>Component architecture, typed props, custom hooks, and Vite-based builds — the foundation across every project.</p>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(168,85,247,0.1)">
+        <svg width="22" height="22" fill="none" stroke="#a855f7" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Next.js &amp; Tailwind CSS</h3>
+      <p>App Router, server components, and ShadCN UI, with Tailwind utility classes for rapid, consistent styling throughout.</p>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(34,211,238,0.1)">
+        <svg width="22" height="22" fill="none" stroke="#22d3ee" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+      </div>
+      <h3>Real-time &amp; Live Data</h3>
+      <p>Reactive backend queries, live stat feeds, and real-time event-driven updates — keeping UIs in sync without polling.</p>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(251,191,36,0.1)">
+        <svg width="22" height="22" fill="none" stroke="#fbbf24" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg>
+      </div>
+      <h3>OpenAI &amp; AI APIs</h3>
+      <p>Text-to-speech synthesis, multi-voice generation, AI image creation, and AI-assisted decision logic baked into product features.</p>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(74,222,128,0.1)">
+        <svg width="22" height="22" fill="none" stroke="#4ade80" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="1.5"/><circle cx="18.5" cy="18.5" r="1.5"/></svg>
+      </div>
+      <h3>Docker &amp; DevOps</h3>
+      <p>Container orchestration, dev environment automation, Git workflows, ESLint, and TypeScript project configuration.</p>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(249,115,22,0.1)">
+        <svg width="22" height="22" fill="none" stroke="#fb923c" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Auth &amp; Data Modelling</h3>
+      <p>Clerk authentication, webhook-driven user sync, JWT with refresh token rotation, Prisma schemas, and role-based access patterns.</p>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(168,85,247,0.15)">
+        <svg width="22" height="22" fill="none" stroke="#a855f7" stroke-width="1.8" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      <h3>PostgreSQL &amp; Prisma</h3>
+      <p>Multi-tenant relational schemas, Supabase-hosted PostgreSQL, Prisma ORM with migrations, and package deduplication across shared tables.</p>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(34,211,238,0.15)">
+        <svg width="22" height="22" fill="none" stroke="#22d3ee" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16v2a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"/><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 14h.01M12 14h.01"/></svg>
+      </div>
+      <h3>Queue Architecture &amp; Workers</h3>
+      <p>BullMQ job queues, Redis pub/sub for SSE onboarding streams, multi-worker pipeline patterns, and cron-driven background jobs.</p>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(74,222,128,0.15)">
+        <svg width="22" height="22" fill="none" stroke="#4ade80" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Python &amp; ML Inference</h3>
+      <p>FastAPI intelligence service, XGBoost scoring models trained on package health signals, linear regression for abandonment prediction, and reason generation pipelines.</p>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-icon" style="background:rgba(79,140,255,0.15)">
+        <svg width="22" height="22" fill="none" stroke="#4f8cff" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+      </div>
+      <h3>GitHub Apps &amp; Webhooks</h3>
+      <p>GitHub App installation flows, PEM-signed API auth, webhook receivers for push events, manifest parsing across ecosystems (npm, PyPI, Go, Rust), and scoped repo access.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact" class="fade-up">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Let's build something together</h2>
+  <p>Open to interesting projects, collaborations, and opportunities. Drop me a message — I'd love to connect.</p>
+  <div class="contact-links">
+    <a href="https://github.com/AryanMadolkar" target="_blank" class="contact-link">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      GitHub
+    </a>
+    <a href="mailto:aryan@example.com" class="contact-link">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Send Email
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Aryan Madolkar</span>
+  <span>Built with Three.js</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+//  HERO PARTICLE FIELD 
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
+  camera.position.set(0, 0, 50);
+
+  function resize() {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles
+  const COUNT = 2000;
+  const positions = new Float32Array(COUNT * 3);
+  const colors = new Float32Array(COUNT * 3);
+  const palettes = [
+    [0.31, 0.55, 1.0],   // blue
+    [0.66, 0.33, 0.97],  // purple
+    [0.13, 0.83, 0.93],  // cyan
+    [0.2, 0.2, 0.35],    // dark
+  ];
+  for (let i = 0; i < COUNT; i++) {
+    const r = 50 * Math.cbrt(Math.random());
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    positions[i*3]   = r * Math.sin(phi) * Math.cos(theta);
+    positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i*3+2] = r * Math.cos(phi);
+    const c = palettes[Math.floor(Math.random() * palettes.length)];
+    colors[i*3] = c[0]; colors[i*3+1] = c[1]; colors[i*3+2] = c[2];
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  const mat = new THREE.PointsMaterial({ size: 0.4, vertexColors: true, transparent: true, opacity: 0.7 });
+  const pts = new THREE.Points(geo, mat);
+  scene.add(pts);
+
+  // Floating geometric shapes
+  function addShape(geom, x, y, z, colorHex) {
+    const m = new THREE.MeshBasicMaterial({ color: colorHex, wireframe: true, transparent: true, opacity: 0.15 });
+    const mesh = new THREE.Mesh(geom, m);
+    mesh.position.set(x, y, z);
+    scene.add(mesh);
+    return mesh;
+  }
+  const shapes = [
+    addShape(new THREE.IcosahedronGeometry(8, 1), 20, 10, -10, 0x4f8cff),
+    addShape(new THREE.OctahedronGeometry(6, 0), -22, -8, -5, 0xa855f7),
+    addShape(new THREE.TetrahedronGeometry(5, 0), 5, -15, 0, 0x22d3ee),
+  ];
+
+  let mouse = { x: 0, y: 0 };
+  document.addEventListener('mousemove', e => {
+    mouse.x = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouse.y = (e.clientY / window.innerHeight - 0.5) * -2;
+  });
+
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.005;
+    pts.rotation.y += 0.001;
+    pts.rotation.x += 0.0003;
+    shapes[0].rotation.x += 0.007; shapes[0].rotation.y += 0.003;
+    shapes[1].rotation.y += 0.005; shapes[1].rotation.z += 0.004;
+    shapes[2].rotation.x += 0.004; shapes[2].rotation.z += 0.006;
+    camera.position.x += (mouse.x * 8 - camera.position.x) * 0.05;
+    camera.position.y += (mouse.y * 4 - camera.position.y) * 0.05;
+    camera.lookAt(0, 0, 0);
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+//  ABOUT — 3D ROTATING TECH SPHERE 
+(function() {
+  const wrap = document.getElementById('about-canvas-wrap');
+  const canvas = document.getElementById('about-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+  camera.position.z = 5;
+
+  function resize() {
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Central icosahedron
+  const icoGeo = new THREE.IcosahedronGeometry(1.5, 1);
+  const icoMat = new THREE.MeshBasicMaterial({ color: 0x4f8cff, wireframe: true, transparent: true, opacity: 0.25 });
+  const ico = new THREE.Mesh(icoGeo, icoMat);
+  scene.add(ico);
+
+  // Solid core
+  const coreGeo = new THREE.IcosahedronGeometry(1.2, 2);
+  const coreMat = new THREE.MeshBasicMaterial({ color: 0x0f1318 });
+  const core = new THREE.Mesh(coreGeo, coreMat);
+  scene.add(core);
+
+  // Orbiting nodes on sphere surface
+  const techColors = [0x4f8cff, 0xa855f7, 0x22d3ee, 0x4ade80, 0xfbbf24];
+  const orbiters = [];
+  const phi = Math.PI * (3 - Math.sqrt(5));
+  const N = 14;
+  for (let i = 0; i < N; i++) {
+    const y = 1 - (i / (N - 1)) * 2;
+    const r = Math.sqrt(1 - y * y);
+    const theta = phi * i;
+    const x = Math.cos(theta) * r;
+    const z = Math.sin(theta) * r;
+    const R = 2.6;
+    const ng = new THREE.SphereGeometry(0.09, 8, 8);
+    const nm = new THREE.MeshBasicMaterial({ color: techColors[i % techColors.length] });
+    const node = new THREE.Mesh(ng, nm);
+    node.position.set(x * R, y * R, z * R);
+    node.userData = { base: { x: x * R, y: y * R, z: z * R }, phase: Math.random() * Math.PI * 2 };
+    scene.add(node);
+    orbiters.push(node);
+
+    // Ring
+    const rg = new THREE.RingGeometry(R - 0.015, R + 0.015, 64);
+    const rm = new THREE.MeshBasicMaterial({ color: techColors[i % techColors.length], side: THREE.DoubleSide, transparent: true, opacity: 0.06 });
+    const ring = new THREE.Mesh(rg, rm);
+    ring.rotation.x = Math.random() * Math.PI;
+    ring.rotation.y = Math.random() * Math.PI;
+    scene.add(ring);
+  }
+
+  // Mouse drag
+  let isDragging = false, prevMouse = { x: 0, y: 0 };
+  let rotX = 0, rotY = 0, velX = 0, velY = 0;
+  wrap.addEventListener('mousedown', e => { isDragging = true; prevMouse = { x: e.clientX, y: e.clientY }; });
+  wrap.addEventListener('touchstart', e => { isDragging = true; prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }, { passive: true });
+  window.addEventListener('mouseup', () => { isDragging = false; });
+  window.addEventListener('touchend', () => { isDragging = false; });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    velY += (e.clientX - prevMouse.x) * 0.005;
+    velX += (e.clientY - prevMouse.y) * 0.005;
+    prevMouse = { x: e.clientX, y: e.clientY };
+  });
+  window.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    velY += (e.touches[0].clientX - prevMouse.x) * 0.005;
+    velX += (e.touches[0].clientY - prevMouse.y) * 0.005;
+    prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+  wrap.addEventListener('wheel', e => {
+    camera.position.z = Math.max(3, Math.min(8, camera.position.z + e.deltaY * 0.01));
+  }, { passive: true });
+
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.012;
+    if (!isDragging) { velX *= 0.95; velY *= 0.95; velY += 0.004; velX += 0.001; }
+    rotX += velX; rotY += velY;
+    const group = new THREE.Group();
+    ico.rotation.x = rotX; ico.rotation.y = rotY;
+    core.rotation.x = rotX; core.rotation.y = rotY;
+    orbiters.forEach((n, i) => {
+      const b = n.userData.base, ph = n.userData.phase;
+      const pulse = 1 + 0.05 * Math.sin(t + ph);
+      n.position.set(b.x * pulse, b.y * pulse, b.z * pulse);
+      n.position.applyEuler(new THREE.Euler(rotX, rotY, 0));
+    });
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+//  PROJECT CARDS — mini 3D scenes 
+function makeCardScene(canvasId, shapeType, primaryColor, wireColor) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 16/8, 0.1, 100);
+  camera.position.z = 4;
+
+  const wrap = canvas.parentElement;
+
+  function resize() {
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let geo;
+  if (shapeType === 'ico') geo = new THREE.IcosahedronGeometry(1, 1);
+  else if (shapeType === 'oct') geo = new THREE.OctahedronGeometry(1.1, 0);
+  else geo = new THREE.TorusKnotGeometry(0.7, 0.25, 80, 16);
+
+  const solidMat = new THREE.MeshBasicMaterial({ color: primaryColor, transparent: true, opacity: 0.07 });
+  const wireMat = new THREE.MeshBasicMaterial({ color: wireColor, wireframe: true, transparent: true, opacity: 0.4 });
+  scene.add(new THREE.Mesh(geo, solidMat));
+  scene.add(new THREE.Mesh(geo, wireMat));
+
+  // bg particles
+  const pg = new THREE.BufferGeometry();
+  const pp = new Float32Array(300 * 3);
+  for (let i = 0; i < 300; i++) {
+    pp[i*3]   = (Math.random()-0.5)*10;
+    pp[i*3+1] = (Math.random()-0.5)*5;
+    pp[i*3+2] = (Math.random()-0.5)*5 - 3;
+  }
+  pg.setAttribute('position', new THREE.BufferAttribute(pp, 3));
+  scene.add(new THREE.Points(pg, new THREE.PointsMaterial({ color: wireColor, size: 0.04, transparent: true, opacity: 0.4 })));
+
+  let hovering = false;
+  const card = canvas.closest('.project-card');
+  card.addEventListener('mouseenter', () => { hovering = true; });
+  card.addEventListener('mouseleave', () => { hovering = false; });
+
+  let t = 0, rx = 0, ry = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.01;
+    const speed = hovering ? 0.025 : 0.008;
+    rx += speed * 0.6; ry += speed;
+    scene.children[0].rotation.x = rx;
+    scene.children[0].rotation.y = ry;
+    scene.children[1].rotation.x = rx;
+    scene.children[1].rotation.y = ry;
+    renderer.render(scene, camera);
+  }
+  animate();
+}
+
+makeCardScene('card-canvas-1', 'ico', 0x4f8cff, 0x4f8cff);
+makeCardScene('card-canvas-2', 'oct', 0xa855f7, 0xa855f7);
+makeCardScene('card-canvas-3', 'torus', 0x22d3ee, 0x22d3ee);
+makeCardScene('card-canvas-4', 'ico', 0x4ade80, 0x4ade80);
+makeCardScene('card-canvas-5', 'oct', 0xfbbf24, 0xfbbf24);
+makeCardScene('card-canvas-6', 'torus', 0xa855f7, 0xa855f7);
+
+//  FADE-UP OBSERVER 
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 100);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
