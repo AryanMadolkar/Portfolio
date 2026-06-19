@@ -926,7 +926,7 @@ window.addEventListener('scroll', () => {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-  camera.position.set(0, 0, 5.5);
+  camera.position.set(0, 2.2, 4.8);
 
   function resize() {
     const w = canvas.clientWidth, h = canvas.clientHeight;
@@ -957,59 +957,151 @@ window.addEventListener('scroll', () => {
   top.position.set(0, 6, 0);
   scene.add(top);
 
-  // Main geometry — icosahedron
-  const geo = new THREE.IcosahedronGeometry(1.4, 1);
-  const mat = new THREE.MeshStandardMaterial({
-    color: 0xc8ccd8,
-    metalness: 0.88,
-    roughness: 0.08,
+  // ── MATERIALS ──
+  const aluminium = new THREE.MeshStandardMaterial({ color: 0xb0b4be, metalness: 0.95, roughness: 0.12 });
+  const aluminiumDark = new THREE.MeshStandardMaterial({ color: 0x888c96, metalness: 0.95, roughness: 0.15 });
+  const screenBorder = new THREE.MeshStandardMaterial({ color: 0x222228, metalness: 0.6, roughness: 0.4 });
+  const screenGlass = new THREE.MeshStandardMaterial({ color: 0x0a0a12, metalness: 0.1, roughness: 0.0, transparent: true, opacity: 0.92 });
+  const keyboardMat = new THREE.MeshStandardMaterial({ color: 0x1a1a22, metalness: 0.3, roughness: 0.7 });
+  const trackpadMat = new THREE.MeshStandardMaterial({ color: 0x9a9eaa, metalness: 0.9, roughness: 0.1 });
+
+  // Screen glow canvas texture
+  const glowCanvas = document.createElement('canvas');
+  glowCanvas.width = 512; glowCanvas.height = 320;
+  const gc = glowCanvas.getContext('2d');
+  const grad = gc.createLinearGradient(0, 0, 512, 320);
+  grad.addColorStop(0, '#1a1060');
+  grad.addColorStop(0.4, '#0d0830');
+  grad.addColorStop(1, '#060420');
+  gc.fillStyle = grad; gc.fillRect(0, 0, 512, 320);
+  // Subtle code lines
+  gc.fillStyle = 'rgba(100,120,255,0.18)';
+  [40,70,100,130,160,190,220,250,280].forEach((y, i) => {
+    gc.fillRect(30, y, 80 + (i % 3) * 60, 2);
+    gc.fillRect(130 + (i%2)*20, y, 60 + (i%4)*30, 2);
   });
-  const mesh = new THREE.Mesh(geo, mat);
-  scene.add(mesh);
-
-  // Wireframe overlay — very subtle
-  const wireMat = new THREE.MeshBasicMaterial({
-    color: 0xffffff,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.06,
+  gc.fillStyle = 'rgba(130,200,255,0.22)';
+  [55,85,115,145,175,205,235,265].forEach((y,i) => {
+    gc.fillRect(30, y, 40+(i%3)*25, 2);
   });
-  scene.add(new THREE.Mesh(geo, wireMat));
+  // Cursor blink highlight
+  gc.fillStyle = 'rgba(79,140,255,0.5)';
+  gc.fillRect(30, 295, 8, 14);
+  const screenTex = new THREE.CanvasTexture(glowCanvas);
+  const screenContentMat = new THREE.MeshBasicMaterial({ map: screenTex });
 
-  // Outer glow ring (thin torus)
-  const ringGeo = new THREE.TorusGeometry(2.0, 0.008, 8, 120);
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0x8090d0, transparent: true, opacity: 0.18 });
-  const ring1 = new THREE.Mesh(ringGeo, ringMat);
-  ring1.rotation.x = Math.PI * 0.35;
-  scene.add(ring1);
+  // ── LAPTOP GROUP ──
+  const laptop = new THREE.Group();
+  scene.add(laptop);
 
-  const ring2 = new THREE.Mesh(new THREE.TorusGeometry(1.75, 0.006, 8, 100), new THREE.MeshBasicMaterial({ color: 0x6070c0, transparent: true, opacity: 0.12 }));
-  ring2.rotation.x = Math.PI * 0.55;
-  ring2.rotation.y = Math.PI * 0.25;
-  scene.add(ring2);
+  // — BASE (bottom half) —
+  const baseGeo = new THREE.BoxGeometry(3.2, 0.12, 2.1);
+  const base = new THREE.Mesh(baseGeo, aluminium);
+  base.position.set(0, 0, 0);
+  laptop.add(base);
 
-  // Mouse tracking
+  // Base bottom (slightly darker)
+  const baseBottom = new THREE.Mesh(new THREE.BoxGeometry(3.18, 0.02, 2.08), aluminiumDark);
+  baseBottom.position.set(0, -0.07, 0);
+  laptop.add(baseBottom);
+
+  // Rubber feet
+  const footGeo = new THREE.CylinderGeometry(0.05, 0.05, 0.02, 8);
+  const footMat = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 1 });
+  [[-1.4,-0.07,-0.85],[1.4,-0.07,-0.85],[-1.4,-0.07,0.85],[1.4,-0.07,0.85]].forEach(([x,y,z]) => {
+    const f = new THREE.Mesh(footGeo, footMat);
+    f.position.set(x,y,z);
+    laptop.add(f);
+  });
+
+  // Keyboard area (recessed)
+  const kbGeo = new THREE.BoxGeometry(2.8, 0.01, 1.6);
+  const kb = new THREE.Mesh(kbGeo, keyboardMat);
+  kb.position.set(0, 0.065, -0.1);
+  laptop.add(kb);
+
+  // Key rows (simplified blocks)
+  const keyRowMat = new THREE.MeshStandardMaterial({ color: 0x28282e, metalness: 0.2, roughness: 0.8 });
+  for (let row = 0; row < 4; row++) {
+    for (let col = 0; col < 12; col++) {
+      const key = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.018, 0.17), keyRowMat);
+      key.position.set(-1.15 + col * 0.21, 0.072, -0.55 + row * 0.22);
+      laptop.add(key);
+    }
+  }
+  // Space bar
+  const space = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.018, 0.17), keyRowMat);
+  space.position.set(0, 0.072, 0.33);
+  laptop.add(space);
+
+  // Trackpad
+  const tp = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.008, 0.65), trackpadMat);
+  tp.position.set(0, 0.065, 0.65);
+  laptop.add(tp);
+
+  // — LID (screen half) —
+  const lid = new THREE.Group();
+  lid.position.set(0, 0.06, -1.04); // hinge point at back
+  laptop.add(lid);
+
+  // Lid outer shell
+  const lidShellGeo = new THREE.BoxGeometry(3.2, 0.1, 2.05);
+  const lidShell = new THREE.Mesh(lidShellGeo, aluminium);
+  lidShell.position.set(0, 0, 1.02);
+  lid.add(lidShell);
+
+  // Lid inner bezel
+  const bezel = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.02, 1.9), screenBorder);
+  bezel.position.set(0, 0.052, 1.02);
+  lid.add(bezel);
+
+  // Screen glass
+  const screenGeo = new THREE.BoxGeometry(2.72, 0.01, 1.66);
+  const screen = new THREE.Mesh(screenGeo, screenGlass);
+  screen.position.set(0, 0.065, 1.0);
+  lid.add(screen);
+
+  // Screen content
+  const content = new THREE.Mesh(new THREE.PlaneGeometry(2.72, 1.66), screenContentMat);
+  content.rotation.x = -Math.PI / 2;
+  content.position.set(0, 0.072, 1.0);
+  lid.add(content);
+
+  // Apple-style logo indent on back
+  const logoGeo = new THREE.CircleGeometry(0.18, 32);
+  const logoMat = new THREE.MeshStandardMaterial({ color: 0xc8ccd8, metalness: 1, roughness: 0.05 });
+  const logo = new THREE.Mesh(logoGeo, logoMat);
+  logo.rotation.x = Math.PI / 2;
+  logo.position.set(0, -0.048, 1.0);
+  lid.add(logo);
+
+  // Open lid ~110 degrees
+  lid.rotation.x = -Math.PI * 0.62;
+
+  // ── MOUSE TRACKING ──
   let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
   document.addEventListener('mousemove', e => {
     mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 0.4;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 0.3;
   });
+
+  // Position camera to show laptop nicely
+  camera.position.set(0, 2.2, 4.8);
+  camera.lookAt(0, 0.3, 0);
 
   let t = 0;
   function animate() {
     requestAnimationFrame(animate);
-    t += 0.008;
+    t += 0.006;
     curX += (mouseX - curX) * 0.04;
     curY += (mouseY - curY) * 0.04;
 
-    mesh.rotation.y = t * 0.25 + curX * 1.2;
-    mesh.rotation.x = curY * 0.8;
-    mesh.position.y = Math.sin(t * 0.7) * 0.12;
-
-    ring1.rotation.z = t * 0.15;
-    ring2.rotation.z = -t * 0.1;
-    ring1.rotation.y = curX * 0.3;
-    ring2.rotation.x = Math.PI * 0.55 + curY * 0.2;
+    // Gentle float
+    laptop.position.y = Math.sin(t * 0.7) * 0.08;
+    // Slow Y rotation + mouse parallax
+    laptop.rotation.y = Math.sin(t * 0.3) * 0.25 + curX * 1.0;
+    // Subtle tilt from mouse
+    laptop.rotation.x = curY * 0.4;
 
     renderer.render(scene, camera);
   }
