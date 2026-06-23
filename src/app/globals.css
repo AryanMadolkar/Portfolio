@@ -114,3 +114,25 @@ body {
   flex-shrink: 0;
   background: var(--section-line);
 }
+
+.dev-marquee {
+  animation: dev-marquee 28s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dev-marquee {
+    animation: none;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@keyframes dev-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

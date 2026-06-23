@@ -34,6 +34,8 @@ export function Projects() {
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
+
+        <MoreInDevelopment />
       </div>
     </section>
   );
@@ -111,13 +113,13 @@ function ProjectPreview({ project }: { project: Project }) {
     return (
       <>
         <BrowserChrome />
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0c0c0e]">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#0c0c0e]">
           <Image
             src={project.image}
             alt={project.title}
             fill
             sizes="(max-width: 640px) 100vw, 50vw"
-            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+            className="object-contain object-top transition-transform duration-500 group-hover:scale-[1.01]"
           />
         </div>
       </>
@@ -128,7 +130,7 @@ function ProjectPreview({ project }: { project: Project }) {
     <>
       <BrowserChrome />
       <div
-        className={`relative flex aspect-[16/10] flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${project.preview.bg} px-6 text-center`}
+        className={`relative flex aspect-[16/9] flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${project.preview.bg} px-6 text-center`}
       >
         <div
           className="pointer-events-none absolute -top-1/3 left-1/2 h-2/3 w-2/3 -translate-x-1/2 rounded-full blur-3xl"
@@ -145,6 +147,37 @@ function ProjectPreview({ project }: { project: Project }) {
         </span>
       </div>
     </>
+  );
+}
+
+function MoreInDevelopment() {
+  const phrase = "More in development";
+  const row = Array.from({ length: 4 }, () => phrase);
+  const items = [...row, ...row];
+
+  return (
+    <div
+      data-reveal
+      className="relative mt-20 overflow-hidden md:mt-24"
+      style={{
+        maskImage:
+          "linear-gradient(90deg, transparent, black 15%, black 85%, transparent)",
+        WebkitMaskImage:
+          "linear-gradient(90deg, transparent, black 15%, black 85%, transparent)",
+      }}
+    >
+      <div className="dev-marquee flex w-max items-center gap-10">
+        {items.map((text, i) => (
+          <span
+            key={i}
+            className="flex shrink-0 items-center gap-10 font-serif text-2xl italic tracking-tight text-[var(--text-dim)] md:text-3xl"
+          >
+            {text}
+            <span className="h-1 w-1 rounded-full bg-[var(--text-dim)]/40" aria-hidden />
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 
