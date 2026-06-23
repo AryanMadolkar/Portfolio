@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { projects, type Project } from "@/data/portfolio";
 import { TechIcon } from "./TechIcon";
@@ -39,26 +40,12 @@ export function Projects() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const frameRef = useRef<HTMLDivElement>(null);
   const isExternal = project.href.startsWith("http");
   const hasLink = project.href !== "#";
 
   return (
     <motion.div data-reveal className="group flex flex-col">
-      <div
-        ref={frameRef}
-        className="relative overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-xl shadow-black/20 transition-all duration-500 group-hover:border-[var(--border-hover)]"
-        onMouseMove={(e) => {
-          if (!frameRef.current) return;
-          const rect = frameRef.current.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          frameRef.current.style.transform = `perspective(1000px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
-        }}
-        onMouseLeave={() => {
-          if (frameRef.current) frameRef.current.style.transform = "";
-        }}
-      >
+      <div className="overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-[var(--surface)] shadow-xl shadow-black/25 transition-all duration-300 group-hover:border-[var(--border-hover)] group-hover:shadow-black/40">
         <ProjectPreview project={project} />
       </div>
 
@@ -109,38 +96,55 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
+function BrowserChrome() {
+  return (
+    <div className="flex items-center gap-1.5 border-b border-[var(--border-soft)] bg-[var(--surface-2)] px-4 py-3">
+      <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" aria-hidden />
+      <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" aria-hidden />
+      <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" aria-hidden />
+    </div>
+  );
+}
+
 function ProjectPreview({ project }: { project: Project }) {
   if (project.image) {
     return (
-      <div className="aspect-[16/10] w-full overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={project.image}
-          alt={project.title}
-          className="h-full w-full object-cover object-top"
-        />
-      </div>
+      <>
+        <BrowserChrome />
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0c0c0e]">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            sizes="(max-width: 640px) 100vw, 50vw"
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        </div>
+      </>
     );
   }
 
   return (
-    <div
-      className={`relative flex aspect-[16/10] flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${project.preview.bg} px-6 text-center`}
-    >
+    <>
+      <BrowserChrome />
       <div
-        className="pointer-events-none absolute -top-1/3 left-1/2 h-2/3 w-2/3 -translate-x-1/2 rounded-full blur-3xl"
-        style={{ background: project.preview.glow, opacity: 0.35 }}
-      />
-      <h4 className="relative z-10 text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
-        {project.preview.headline}
-      </h4>
-      <p className="relative z-10 mt-2 text-xs text-zinc-300/80 md:text-sm">
-        {project.preview.sub}
-      </p>
-      <span className="relative z-10 mt-4 rounded-full bg-white/90 px-4 py-1.5 text-[0.65rem] font-semibold text-zinc-950">
-        Explore
-      </span>
-    </div>
+        className={`relative flex aspect-[16/10] flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${project.preview.bg} px-6 text-center`}
+      >
+        <div
+          className="pointer-events-none absolute -top-1/3 left-1/2 h-2/3 w-2/3 -translate-x-1/2 rounded-full blur-3xl"
+          style={{ background: project.preview.glow, opacity: 0.35 }}
+        />
+        <h4 className="relative z-10 text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
+          {project.preview.headline}
+        </h4>
+        <p className="relative z-10 mt-2 text-xs text-zinc-300/80 md:text-sm">
+          {project.preview.sub}
+        </p>
+        <span className="relative z-10 mt-4 rounded-full bg-white/90 px-4 py-1.5 text-[0.65rem] font-semibold text-zinc-950">
+          Explore
+        </span>
+      </div>
+    </>
   );
 }
 
