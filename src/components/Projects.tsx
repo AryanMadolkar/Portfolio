@@ -126,7 +126,7 @@ function BrowserPreview({ project }: { project: Project }) {
         <img
           src={project.image}
           alt={project.title}
-          className="aspect-[16/10] w-full object-cover"
+          className="aspect-[16/10] w-full object-cover object-top"
         />
       ) : (
         <div

@@ -93,6 +93,7 @@ export const projects: Project[] = [
     repo: "https://github.com/AryanMadolkar/Dockflow-Pro",
     tags: ["React", "TypeScript", "Vite"],
     accent: "from-blue-500/20",
+    image: "/projects/dockflow-pro.png",
     preview: {
       headline: "Manage Your Port.",
       sub: "Add tasks, remove tasks, stay in control.",
@@ -110,6 +111,7 @@ export const projects: Project[] = [
     repo: "https://github.com/AryanMadolkar/podcastr",
     tags: ["Next.js", "OpenAI", "Convex", "Clerk"],
     accent: "from-purple-500/20",
+    image: "/projects/podcastr.png",
     preview: {
       headline: "Create AI Podcasts.",
       sub: "Multi-voice. One click.",
@@ -127,6 +129,7 @@ export const projects: Project[] = [
     repo: "https://github.com/aryanpachori/Beacon",
     tags: ["Node.js", "Python", "XGBoost", "BullMQ", "PostgreSQL"],
     accent: "from-indigo-500/20",
+    image: "/projects/beacon.png",
     preview: {
       headline: "Beacon.",
       sub: "ML-scored package health.",
@@ -145,6 +148,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
     accent: "from-emerald-500/20",
     live: true,
+    image: "/projects/leaf.png",
     preview: {
       headline: "A Home for Book Lovers.",
       sub: "Discover. Shelve. Read.",
@@ -161,6 +165,7 @@ export const projects: Project[] = [
     href: "#",
     tags: ["React", "Dashboard", "Data Viz"],
     accent: "from-cyan-500/20",
+    image: "/projects/unitrack.png",
     preview: {
       headline: "Your Admissions Compass.",
       sub: "Compare every requirement.",
