@@ -73,7 +73,7 @@ export function GitHubActivity() {
 
         <div
           data-reveal
-          className="mx-auto max-w-4xl overflow-x-auto rounded-2xl border border-[var(--border-soft)] bg-[var(--surface)] p-6 md:p-8"
+          className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-[var(--surface)] p-6 md:p-8"
         >
           {error && (
             <p className="text-center text-sm text-[var(--text-muted)]">
@@ -97,15 +97,16 @@ export function GitHubActivity() {
 
           {data && (
             <>
-              <div className="flex justify-center">
+              <div className="flex justify-center overflow-hidden">
                 <ActivityCalendar
                   data={data.contributions}
                   colorScheme={isLight ? "light" : "dark"}
                   theme={calendarTheme}
-                  blockSize={12}
-                  blockMargin={4}
-                  fontSize={13}
-                  style={{ color: "var(--text-muted)" }}
+                  blockSize={10}
+                  blockMargin={3}
+                  fontSize={12}
+                  showTotalCount={false}
+                  style={{ color: "var(--text-muted)", maxWidth: "100%" }}
                   labels={{
                     totalCount: "{{count}} contributions in the last year",
                   }}
