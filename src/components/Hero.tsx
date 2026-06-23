@@ -14,12 +14,13 @@ export function Hero() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative mb-10"
         >
-          <div className="relative aspect-[21/9] w-full overflow-hidden rounded-2xl border border-[var(--border-soft)] md:aspect-[21/8] md:rounded-3xl">
+          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl border border-[var(--border-soft)] md:rounded-3xl">
             <Image
               src="/hero-banner.png"
               alt=""
               fill
-              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1152px"
+              className="object-cover object-center"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/20 to-transparent" />
