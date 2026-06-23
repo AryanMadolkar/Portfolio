@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { FiSun, FiMoon } from "react-icons/fi";
-import { navLinks, navSocials } from "@/data/portfolio";
+import { navLinks, navSocials, siteConfig } from "@/data/portfolio";
 import { SocialIcon } from "./SocialIcon";
 
 export function Navbar() {
@@ -30,8 +30,11 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 md:px-10">
-        <a href="#home" aria-label="Home" className="flex items-center gap-2">
-          <FlameLogo />
+        <a
+          href="#home"
+          className="text-sm font-semibold tracking-tight text-[var(--text)] transition-opacity hover:opacity-80"
+        >
+          {siteConfig.name}
         </a>
 
         <div className="flex items-center gap-1 sm:gap-2">
@@ -94,15 +97,5 @@ function ThemeToggle() {
     >
       {light ? <FiMoon size={16} /> : <FiSun size={16} />}
     </button>
-  );
-}
-
-function FlameLogo() {
-  return (
-    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-rose-600 text-white shadow-lg shadow-orange-500/20">
-      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 2c1 3-1.5 4.5-1.5 7 0 1.4 1 2.5 1.5 3 .5-.8 1-1.7 1-3 1 1 2 2.5 2 4.5a5 5 0 11-9.6 1.9C5 13 8 11 8 7c2 .5 3 2 3 3 .6-2.4-.5-5.5 1-8z" />
-      </svg>
-    </span>
   );
 }
