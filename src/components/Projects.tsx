@@ -151,33 +151,18 @@ function ProjectPreview({ project }: { project: Project }) {
 }
 
 function MoreInDevelopment() {
-  const phrase = "More in development";
-  const row = Array.from({ length: 4 }, () => phrase);
-  const items = [...row, ...row];
-
   return (
-    <div
+    <p
       data-reveal
-      className="relative mt-20 overflow-hidden md:mt-24"
-      style={{
-        maskImage:
-          "linear-gradient(90deg, transparent, black 15%, black 85%, transparent)",
-        WebkitMaskImage:
-          "linear-gradient(90deg, transparent, black 15%, black 85%, transparent)",
-      }}
+      className="mt-20 text-center font-serif text-2xl italic tracking-tight text-[var(--text-dim)] md:mt-24 md:text-3xl"
     >
-      <div className="dev-marquee flex w-max items-center gap-10">
-        {items.map((text, i) => (
-          <span
-            key={i}
-            className="flex shrink-0 items-center gap-10 font-serif text-2xl italic tracking-tight text-[var(--text-dim)] md:text-3xl"
-          >
-            {text}
-            <span className="h-1 w-1 rounded-full bg-[var(--text-dim)]/40" aria-hidden />
-          </span>
-        ))}
-      </div>
-    </div>
+      More in development
+      <span className="dev-dots" aria-hidden>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+      </span>
+    </p>
   );
 }
 
