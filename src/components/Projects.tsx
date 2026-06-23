@@ -47,7 +47,7 @@ function ProjectCard({ project }: { project: Project }) {
     <motion.div data-reveal className="group flex flex-col">
       <div
         ref={frameRef}
-        className="relative overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-[#0d0d10] shadow-xl shadow-black/20 transition-all duration-500 group-hover:border-[var(--border-hover)]"
+        className="relative overflow-hidden rounded-2xl border border-[var(--border-soft)] shadow-xl shadow-black/20 transition-all duration-500 group-hover:border-[var(--border-hover)]"
         onMouseMove={(e) => {
           if (!frameRef.current) return;
           const rect = frameRef.current.getBoundingClientRect();
@@ -59,7 +59,7 @@ function ProjectCard({ project }: { project: Project }) {
           if (frameRef.current) frameRef.current.style.transform = "";
         }}
       >
-        <BrowserPreview project={project} />
+        <ProjectPreview project={project} />
       </div>
 
       <div className="mt-5 flex items-start justify-between gap-3">
@@ -109,44 +109,37 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-function BrowserPreview({ project }: { project: Project }) {
-  return (
-    <div className="relative">
-      <div className="flex items-center gap-2 border-b border-white/8 bg-[#141417] px-4 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-        <span className="mx-auto hidden w-1/2 truncate rounded-md bg-white/5 px-3 py-1 text-center text-[0.6rem] text-zinc-500 sm:block">
-          {project.live ? project.href.replace("https://", "") : `${project.id} · preview`}
-        </span>
-      </div>
-
-      {project.image ? (
-        // eslint-disable-next-line @next/next/no-img-element
+function ProjectPreview({ project }: { project: Project }) {
+  if (project.image) {
+    return (
+      <div className="aspect-[16/10] w-full overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={project.image}
           alt={project.title}
-          className="aspect-[16/10] w-full object-cover object-top"
+          className="h-full w-full object-cover object-top"
         />
-      ) : (
-        <div
-          className={`relative flex aspect-[16/10] flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${project.preview.bg} px-6 text-center`}
-        >
-          <div
-            className="pointer-events-none absolute -top-1/3 left-1/2 h-2/3 w-2/3 -translate-x-1/2 rounded-full blur-3xl"
-            style={{ background: project.preview.glow, opacity: 0.35 }}
-          />
-          <h4 className="relative z-10 text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
-            {project.preview.headline}
-          </h4>
-          <p className="relative z-10 mt-2 text-xs text-zinc-300/80 md:text-sm">
-            {project.preview.sub}
-          </p>
-          <span className="relative z-10 mt-4 rounded-full bg-white/90 px-4 py-1.5 text-[0.65rem] font-semibold text-zinc-950">
-            Explore
-          </span>
-        </div>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`relative flex aspect-[16/10] flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${project.preview.bg} px-6 text-center`}
+    >
+      <div
+        className="pointer-events-none absolute -top-1/3 left-1/2 h-2/3 w-2/3 -translate-x-1/2 rounded-full blur-3xl"
+        style={{ background: project.preview.glow, opacity: 0.35 }}
+      />
+      <h4 className="relative z-10 text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
+        {project.preview.headline}
+      </h4>
+      <p className="relative z-10 mt-2 text-xs text-zinc-300/80 md:text-sm">
+        {project.preview.sub}
+      </p>
+      <span className="relative z-10 mt-4 rounded-full bg-white/90 px-4 py-1.5 text-[0.65rem] font-semibold text-zinc-950">
+        Explore
+      </span>
     </div>
   );
 }
