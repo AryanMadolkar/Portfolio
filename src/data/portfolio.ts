@@ -200,33 +200,10 @@ export const socialLinks: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/AryanMadolkar" },
   { label: "Twitter", href: "https://x.com/aryanmadolkar10" },
   { label: "LinkedIn", href: "https://linkedin.com/in/aryanmadolkar" },
-  { label: "Instagram", href: "https://instagram.com/aryanmadolkar" },
-  { label: "Email", href: "mailto:aryan@example.com" },
-];
-
-export const contactActions = [
-  {
-    category: "Meeting",
-    label: "Schedule a Call",
-    href: "mailto:aryan@example.com?subject=Schedule%20a%20Call",
-    icon: "calendar" as const,
-  },
-  {
-    category: "Resume",
-    label: "Resume",
-    href: "/resume.pdf",
-    icon: "resume" as const,
-  },
-  {
-    category: "Texting",
-    label: "WhatsApp",
-    href: "https://wa.me/",
-    icon: "whatsapp" as const,
-  },
+  { label: "Email", href: "mailto:madolkararyan16@gmail.com" },
 ];
 
 export const navSocials: SocialLink[] = [
-  { label: "Instagram", href: "https://instagram.com/aryanmadolkar" },
   { label: "Twitter", href: "https://x.com/aryanmadolkar10" },
   { label: "LinkedIn", href: "https://linkedin.com/in/aryanmadolkar" },
   { label: "GitHub", href: "https://github.com/AryanMadolkar" },
