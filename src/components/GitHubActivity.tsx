@@ -51,8 +51,8 @@ export function GitHubActivity() {
 
   return (
     <section className="border-t border-[var(--border-soft)] px-6 py-24 md:px-10 md:py-32">
-      <div className="mx-auto max-w-6xl">
-        <div data-reveal className="mb-4 flex items-center gap-4">
+      <div className="mx-auto max-w-6xl text-center">
+        <div data-reveal className="mb-4 flex items-center justify-center gap-4">
           <span className="section-label">Activity</span>
           <span className="section-line" />
         </div>
@@ -73,7 +73,7 @@ export function GitHubActivity() {
 
         <div
           data-reveal
-          className="overflow-x-auto rounded-2xl border border-[var(--border-soft)] bg-[var(--surface)] p-6 md:p-8"
+          className="mx-auto max-w-4xl overflow-x-auto rounded-2xl border border-[var(--border-soft)] bg-[var(--surface)] p-6 md:p-8"
         >
           {error && (
             <p className="text-center text-sm text-[var(--text-muted)]">
@@ -97,18 +97,20 @@ export function GitHubActivity() {
 
           {data && (
             <>
-              <ActivityCalendar
-                data={data.contributions}
-                colorScheme={isLight ? "light" : "dark"}
-                theme={calendarTheme}
-                blockSize={12}
-                blockMargin={4}
-                fontSize={13}
-                style={{ color: "var(--text-muted)" }}
-                labels={{
-                  totalCount: "{{count}} contributions in the last year",
-                }}
-              />
+              <div className="flex justify-center">
+                <ActivityCalendar
+                  data={data.contributions}
+                  colorScheme={isLight ? "light" : "dark"}
+                  theme={calendarTheme}
+                  blockSize={12}
+                  blockMargin={4}
+                  fontSize={13}
+                  style={{ color: "var(--text-muted)" }}
+                  labels={{
+                    totalCount: "{{count}} contributions in the last year",
+                  }}
+                />
+              </div>
               <p className="mt-4 text-center text-xs text-[var(--text-dim)]">
                 <a
                   href={data.profileUrl}
