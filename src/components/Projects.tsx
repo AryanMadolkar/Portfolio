@@ -46,53 +46,56 @@ function ProjectCard({ project }: { project: Project }) {
   const hasLink = project.href !== "#";
 
   return (
-    <motion.div data-reveal className="group flex flex-col">
-      <div className="overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-[var(--surface)] shadow-xl shadow-black/25 transition-all duration-300 group-hover:border-[var(--border-hover)] group-hover:shadow-black/40">
-        <ProjectPreview project={project} />
-      </div>
+    <motion.div
+      data-reveal
+      className="project-card group flex flex-col overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-[var(--surface)] shadow-xl shadow-black/25"
+    >
+      <ProjectPreview project={project} />
 
-      <div className="mt-5 flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h3 className="font-serif text-xl italic tracking-tight text-[var(--text)] md:text-2xl">
-            {project.title.split(" — ")[0]}
-          </h3>
-          <p className="section-label mt-1.5">{project.label}</p>
+      <div className="flex flex-col p-5 md:p-6">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <h3 className="font-serif text-xl italic tracking-tight text-[var(--text)] md:text-2xl">
+              {project.title.split(" — ")[0]}
+            </h3>
+            <p className="section-label mt-1.5">{project.label}</p>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-2">
+            {project.repo && (
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title} source code`}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-soft)] text-[var(--text-muted)] transition-all hover:-translate-y-0.5 hover:border-[var(--border-hover)] hover:text-[var(--text)]"
+              >
+                <RepoIcon />
+              </a>
+            )}
+            {hasLink && (
+              <a
+                href={project.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                aria-label={`Open ${project.title}`}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--invert)] text-[var(--invert-text)] transition-all hover:-translate-y-0.5 hover:opacity-90"
+              >
+                <ArrowIcon />
+              </a>
+            )}
+          </div>
         </div>
 
-        <div className="flex shrink-0 items-center gap-2">
-          {project.repo && (
-            <a
-              href={project.repo}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${project.title} source code`}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-soft)] text-[var(--text-muted)] transition-all hover:-translate-y-0.5 hover:border-[var(--border-hover)] hover:text-[var(--text)]"
-            >
-              <RepoIcon />
-            </a>
-          )}
-          {hasLink && (
-            <a
-              href={project.href}
-              target={isExternal ? "_blank" : undefined}
-              rel={isExternal ? "noopener noreferrer" : undefined}
-              aria-label={`Open ${project.title}`}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--invert)] text-[var(--invert-text)] transition-all hover:-translate-y-0.5 hover:opacity-90"
-            >
-              <ArrowIcon />
-            </a>
-          )}
+        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-[var(--text-muted)]">
+          {project.description}
+        </p>
+
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          {project.tags.map((tag) => (
+            <TechBadge key={tag} name={tag} />
+          ))}
         </div>
-      </div>
-
-      <p className="mt-3 line-clamp-2 max-w-md text-sm leading-relaxed text-[var(--text-muted)]">
-        {project.description}
-      </p>
-
-      <div className="mt-4 flex flex-wrap items-center gap-2">
-        {project.tags.map((tag) => (
-          <TechBadge key={tag} name={tag} />
-        ))}
       </div>
     </motion.div>
   );
@@ -114,12 +117,18 @@ function ProjectPreview({ project }: { project: Project }) {
       <>
         <BrowserChrome />
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#0c0c0e]">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            sizes="(max-width: 640px) 100vw, 50vw"
-            className="object-contain object-top transition-transform duration-500 group-hover:scale-[1.01]"
+          <div className="project-card-media relative h-full w-full">
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 640px) 100vw, 50vw"
+              className="object-contain object-top"
+            />
+          </div>
+          <div
+            className="project-card-overlay pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"
+            aria-hidden
           />
         </div>
       </>
@@ -130,10 +139,10 @@ function ProjectPreview({ project }: { project: Project }) {
     <>
       <BrowserChrome />
       <div
-        className={`relative flex aspect-[16/9] flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${project.preview.bg} px-6 text-center`}
+        className={`project-card-media relative flex aspect-[16/9] flex-col items-center justify-center overflow-hidden bg-gradient-to-br ${project.preview.bg} px-6 text-center`}
       >
         <div
-          className="pointer-events-none absolute -top-1/3 left-1/2 h-2/3 w-2/3 -translate-x-1/2 rounded-full blur-3xl"
+          className="pointer-events-none absolute -top-1/3 left-1/2 h-2/3 w-2/3 -translate-x-1/2 rounded-full blur-3xl transition-opacity duration-500 group-hover:opacity-50"
           style={{ background: project.preview.glow, opacity: 0.35 }}
         />
         <h4 className="relative z-10 text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
@@ -142,7 +151,7 @@ function ProjectPreview({ project }: { project: Project }) {
         <p className="relative z-10 mt-2 text-xs text-zinc-300/80 md:text-sm">
           {project.preview.sub}
         </p>
-        <span className="relative z-10 mt-4 rounded-full bg-white/90 px-4 py-1.5 text-[0.65rem] font-semibold text-zinc-950">
+        <span className="relative z-10 mt-4 rounded-full bg-white/90 px-4 py-1.5 text-[0.65rem] font-semibold text-zinc-950 transition-transform duration-300 group-hover:scale-105">
           Explore
         </span>
       </div>
