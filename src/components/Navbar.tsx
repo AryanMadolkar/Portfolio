@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
-import { FiSun, FiMoon } from "react-icons/fi";
 import { navLinks, navSocials, siteConfig } from "@/data/portfolio";
 import { SocialIcon } from "./SocialIcon";
 
@@ -65,37 +64,8 @@ export function Navbar() {
               </a>
             ))}
           </div>
-
-          <ThemeToggle />
         </div>
       </nav>
     </motion.header>
-  );
-}
-
-function ThemeToggle() {
-  const [light, setLight] = useState(false);
-
-  useEffect(() => {
-    setLight(document.documentElement.classList.contains("light"));
-  }, []);
-
-  const toggle = () => {
-    const next = !light;
-    setLight(next);
-    document.documentElement.classList.toggle("light", next);
-    try {
-      localStorage.setItem("theme", next ? "light" : "dark");
-    } catch {}
-  };
-
-  return (
-    <button
-      onClick={toggle}
-      aria-label="Toggle theme"
-      className="flex h-9 w-9 items-center justify-center rounded-full text-[var(--text-muted)] transition-colors hover:bg-[var(--surface-2)] hover:text-[var(--text)]"
-    >
-      {light ? <FiMoon size={16} /> : <FiSun size={16} />}
-    </button>
   );
 }
