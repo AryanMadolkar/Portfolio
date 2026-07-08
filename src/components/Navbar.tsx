@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { navLinks, navSocials, siteConfig } from "@/data/portfolio";
@@ -31,8 +32,16 @@ export function Navbar() {
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 md:px-10">
         <a
           href="#home"
-          className="text-sm font-semibold tracking-tight text-[var(--text)] transition-opacity hover:opacity-80"
+          className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-[var(--text)] transition-opacity hover:opacity-80"
         >
+          <Image
+            src="/logo.png"
+            alt=""
+            width={32}
+            height={32}
+            className="h-8 w-8 shrink-0 rounded-full"
+            priority
+          />
           {siteConfig.name}
         </a>
 
