@@ -55,7 +55,7 @@ export function Bookshelf() {
       <div className={styles.headingRow}>
         <h2 className="section-heading">Bookshelf</h2>
         <p className={styles.note}>
-          Books I've read
+          Books I&apos;ve read
           <br />
           in the last year
           <svg viewBox="0 0 72 36" fill="none" aria-hidden>
