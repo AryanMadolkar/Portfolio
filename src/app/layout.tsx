@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { DM_Sans, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { siteConfig } from "@/data/portfolio";
+import { FrameGutters } from "@/components/FrameGutters";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
@@ -14,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 const instrumentSerif = Instrument_Serif({
-  variable: "--font-serif",
+  variable: "--font-instrument",
   weight: "400",
   style: ["normal", "italic"],
   subsets: ["latin"],
@@ -36,12 +37,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} min-h-screen antialiased`}
-      >
-        <div className="mountain-bg" aria-hidden />
-        <div className="relative z-10">{children}</div>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${dmSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+    >
+      <body className="min-h-screen antialiased">
+        <FrameGutters />
+        {children}
       </body>
     </html>
   );

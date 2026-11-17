@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1060" viewBox="0 0 700 1060">
+  <rect width="700" height="1060" fill="#111"/>
+  
+  <rect width="700" height="1060" fill="#0c2429"/>
+  <circle cx="350" cy="400" r="210" fill="none" stroke="#8fd4c4" stroke-width="3"/>
+  <circle cx="350" cy="400" r="150" fill="none" stroke="#8fd4c4" stroke-width="3"/>
+  <circle cx="350" cy="400" r="86" fill="none" stroke="#8fd4c4" stroke-width="3"/>
+  <circle cx="350" cy="400" r="18" fill="#8fd4c4"/>
+  <rect x="70" y="700" width="560" height="170" fill="#07181c"/>
+  <text x="350" y="770" fill="#d7f3ec" font-family="Georgia, serif" font-size="48" letter-spacing="6" text-anchor="middle">PSYCHO-</text>
+  <text x="350" y="832" fill="#d7f3ec" font-family="Georgia, serif" font-size="48" letter-spacing="4" text-anchor="middle">CYBERNETICS</text>
+  <text x="350" y="960" fill="#8fd4c4" font-family="Georgia, serif" font-size="20" letter-spacing="6" text-anchor="middle">MAXWELL MALTZ</text>
+
+  <rect width="18" height="1060" fill="#000" opacity="0.28"/>
+</svg>

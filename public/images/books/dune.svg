@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1060" viewBox="0 0 700 1060">
+  <rect width="700" height="1060" fill="#111"/>
+  
+  <rect width="700" height="1060" fill="#e4c28a"/>
+  <rect width="700" height="16" fill="#5c3814"/>
+  <circle cx="540" cy="168" r="62" fill="#f8efd8"/>
+  <circle cx="468" cy="214" r="26" fill="#f8efd8" opacity="0.9"/>
+  <text x="64" y="340" fill="#3a2412" font-family="Georgia, serif" font-size="132" letter-spacing="18">DUNE</text>
+  <text x="68" y="392" fill="#3a2412" font-family="Georgia, serif" font-size="22" letter-spacing="8">FRANK HERBERT</text>
+  <path d="M0 560 C160 500 220 620 380 560 C520 508 580 600 700 540 L700 760 L0 760 Z" fill="#c99555"/>
+  <path d="M0 660 C180 600 280 740 460 660 C560 610 620 700 700 650 L700 900 L0 900 Z" fill="#a56b32"/>
+  <path d="M0 800 C200 740 300 880 480 800 C580 750 640 840 700 790 L700 1060 L0 1060 Z" fill="#7d4e22"/>
+
+  <rect width="18" height="1060" fill="#000" opacity="0.28"/>
+</svg>

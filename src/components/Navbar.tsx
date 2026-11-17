@@ -1,80 +1,25 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import clsx from "clsx";
-import { navLinks, navSocials, siteConfig } from "@/data/portfolio";
-import { SocialIcon } from "./SocialIcon";
+import { siteConfig } from "@/data/portfolio";
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={clsx(
-        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-500",
-        scrolled
-          ? "border-[var(--border-soft)] bg-[var(--bg)]/80 backdrop-blur-xl"
-          : "border-transparent bg-transparent"
-      )}
-    >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 md:px-10">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
+      <div className="mx-auto flex h-16 w-full max-w-3xl items-center px-5">
         <a
-          href="#home"
-          className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-[var(--text)] transition-opacity hover:opacity-80"
+          href="#top"
+          className="pointer-events-auto rounded-full transition-opacity hover:opacity-80"
+          aria-label={siteConfig.name}
         >
           <Image
             src="/logo.png"
             alt=""
-            width={32}
-            height={32}
-            className="h-8 w-8 shrink-0 rounded-full"
+            width={36}
+            height={36}
+            className="h-9 w-9 rounded-full"
             priority
           />
-          {siteConfig.name}
         </a>
-
-        <div className="flex items-center gap-1 sm:gap-2">
-          <ul className="mr-2 hidden items-center gap-6 md:flex">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text)]"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <div className="hidden items-center gap-1 sm:flex">
-            {navSocials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                className="flex h-9 w-9 items-center justify-center rounded-full text-[var(--text-muted)] transition-colors hover:bg-[var(--surface-2)] hover:text-[var(--text)]"
-              >
-                <SocialIcon label={social.label} size={16} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
-    </motion.header>
+      </div>
+    </header>
   );
 }

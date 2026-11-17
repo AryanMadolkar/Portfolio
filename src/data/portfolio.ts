@@ -9,17 +9,20 @@ export const siteConfig = {
   github: "AryanMadolkar",
   avatarUrl: "https://avatars.githubusercontent.com/u/136626566?v=4",
   company: null,
-  tagline: {
-    italic: "Building",
-    bold: "Digital Experiences.",
-  },
+  headline: "Building digital experiences.",
   bio: "Specializing in crafting seamless interfaces with TypeScript, Next.js, and GSAP. Driven by a keen eye for design and a passion for interactive aesthetics.",
   bioHighlights: ["TypeScript", "Next.js", "GSAP"],
   about: {
     heading: "Developer with a passion for craft",
-    paragraphs: [
-      "I'm a full-stack developer who turns complex problems into clean, elegant products. From AI-powered SaaS platforms to predictive ML systems, I build things that are powerful and delightful to use.",
-      "Currently exploring the intersection of AI and developer tooling — building experiences where the technology disappears and the work flows naturally.",
+    points: [
+      {
+        lead: "I'm a full-stack developer",
+        text: "who turns complex problems into clean, elegant products. From AI-powered SaaS platforms to predictive ML systems, I build things that are powerful and delightful to use.",
+      },
+      {
+        lead: "Right now, I'm exploring AI and developer tooling",
+        text: "and building experiences where the technology disappears and the work flows naturally.",
+      },
     ],
     stats: [
       { value: "7+", label: "Projects shipped" },
@@ -29,37 +32,47 @@ export const siteConfig = {
   },
   tech: [
     {
-      title: "Languages & Frameworks",
-      items: ["TypeScript", "React", "Next.js", "Node.js", "Python"],
+      title: "Language",
+      items: ["TypeScript", "Python"],
     },
     {
-      title: "Styling & UI",
-      items: ["Tailwind CSS", "ShadCN", "Vite", "Three.js"],
+      title: "Frontend",
+      items: [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Vite",
+        "Motion",
+        "GSAP",
+        "TanStack Query",
+        "Recharts",
+      ],
     },
     {
-      title: "Data & Backend",
-      items: ["PostgreSQL", "Supabase", "Convex", "Redis", "BullMQ", "Prisma"],
+      title: "Backend",
+      items: [
+        "Node.js",
+        "Express",
+        "Prisma",
+        "PostgreSQL",
+        "Neon",
+        "Supabase",
+        "Convex",
+        "Redis",
+        "BullMQ",
+        "Auth.js",
+        "Clerk",
+      ],
     },
     {
-      title: "Tools & Infrastructure",
-      items: ["Docker", "GitHub Apps", "Clerk", "OpenAI", "XGBoost", "Vercel"],
+      title: "AI",
+      items: ["OpenAI", "Gemini", "XGBoost", "scikit-learn"],
     },
-  ],
-  techMarquee: [
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Python",
-    "Tailwind CSS",
-    "PostgreSQL",
-    "Supabase",
-    "Convex",
-    "Redis",
-    "Prisma",
-    "Docker",
-    "OpenAI",
-    "Vercel",
+    {
+      title: "Tools",
+      items: ["Zod", "React Hook Form", "Razorpay", "Vercel", "GitHub"],
+    },
   ],
 };
 
@@ -67,6 +80,7 @@ export type Project = {
   id: string;
   title: string;
   label: string;
+  summary: string;
   description: string;
   href: string;
   repo?: string;
@@ -85,8 +99,28 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "01",
+    title: "Thrive",
+    label: "Full Stack Developer",
+    summary: "A social platform for personal journeys",
+    description:
+      "Document a journey, share progress, and follow other people building in public. Discover, timelines, and profiles on Next.js and Postgres.",
+    href: "https://thriveapp-psi.vercel.app",
+    repo: "https://github.com/AryanMadolkar/Thrive",
+    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+    accent: "from-amber-500/20",
+    live: true,
+    preview: {
+      headline: "Document the journey.",
+      sub: "Share progress. Inspire someone.",
+      bg: "from-[#2a2114] via-[#1a140e] to-[#0c0a08]",
+      glow: "rgba(232,180,90,0.45)",
+    },
+  },
+  {
+    id: "02",
     title: "Dockflow Pro",
     label: "Full Stack Developer",
+    summary: "Port tasks and dock operations",
     description:
       "A platform for docks to add and remove tasks and manage port operations — keeping workflows organized and ports running smoothly.",
     href: "https://github.com/AryanMadolkar/Dockflow-Pro",
@@ -102,9 +136,10 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "02",
+    id: "03",
     title: "Podcastr — AI Podcast Platform",
     label: "Full Stack Developer",
+    summary: "AI podcasts with multi-voice audio",
     description:
       "AI SaaS platform for creating and discovering podcasts with text-to-audio synthesis, multi-voice AI generation, and AI thumbnail creation.",
     href: "https://github.com/AryanMadolkar/podcastr",
@@ -120,9 +155,10 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "03",
+    id: "04",
     title: "Beacon",
     label: "Full Stack / ML Engineer",
+    summary: "ML scores for package health",
     description:
       "Predictive dependency health platform that scans GitHub repos and uses XGBoost ML to score packages 0–100.",
     href: "https://github.com/aryanpachori/Beacon",
@@ -138,9 +174,10 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "04",
+    id: "05",
     title: "Leaf — A Home for Book Lovers",
     label: "Full Stack Developer",
+    summary: "A home for book lovers",
     description:
       "A community platform for readers. Book discovery, social shelves, and a clean reading-first UI built on Next.js and Supabase.",
     href: "https://leaf-peach.vercel.app",
@@ -157,26 +194,10 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "05",
-    title: "UniTrack — Admissions Compass",
-    label: "Frontend Developer",
-    description:
-      "University admissions requirements tracker. Compare entry criteria, deadlines, and eligibility across institutions.",
-    href: "#",
-    tags: ["React", "Dashboard", "Data Viz"],
-    accent: "from-cyan-500/20",
-    image: "/projects/unitrack.png",
-    preview: {
-      headline: "Your Admissions Compass.",
-      sub: "Compare every requirement.",
-      bg: "from-[#072730] via-[#061b22] to-[#041013]",
-      glow: "rgba(34,211,238,0.5)",
-    },
-  },
-  {
     id: "06",
     title: "double-pivot — Football Alternate History",
     label: "Full Stack Developer",
+    summary: "Football alternate-history simulator",
     description:
       "Football intelligence platform for simulating alternate histories. Change a transfer, run seasons forward, and watch trophies, dynasties, and Ballon d'Ors unfold differently.",
     href: "https://double-pivot.vercel.app",
@@ -197,22 +218,102 @@ export const projects: Project[] = [
 export type SocialLink = {
   label: string;
   href: string;
+  handle: string;
 };
 
 export const socialLinks: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/AryanMadolkar" },
-  { label: "Twitter", href: "https://x.com/aryanmadolkar10" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/aryanmadolkar" },
-  { label: "Email", href: "mailto:madolkararyan16@gmail.com" },
+  { label: "GitHub", href: "https://github.com/AryanMadolkar", handle: "@AryanMadolkar" },
+  { label: "Twitter", href: "https://x.com/aryanmadolkar10", handle: "@aryanmadolkar10" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/aryanmadolkar", handle: "aryanmadolkar" },
+  { label: "Email", href: "mailto:madolkararyan16@gmail.com", handle: "madolkararyan16@gmail.com" },
 ];
 
-export const navSocials: SocialLink[] = [
-  { label: "Twitter", href: "https://x.com/aryanmadolkar10" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/aryanmadolkar" },
-  { label: "GitHub", href: "https://github.com/AryanMadolkar" },
+export const menuLinks = [
+  { label: "Intro", href: "#intro" },
+  { label: "Work", href: "#work" },
+  { label: "Socials", href: "#socials" },
+  { label: "Stack", href: "#stack" },
+  { label: "Bookshelf", href: "#bookshelf" },
+  { label: "About", href: "#about" },
+  { label: "Activity", href: "#activity" },
 ];
 
-export const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Projects", href: "#projects" },
+export type Book = {
+  id: string;
+  title: string;
+  author: string;
+  cover: { src: string; width: number; height: number; alt: string };
+  spine: { src: string; width: number; height: number };
+};
+
+const cover = (id: string, alt: string) => ({
+  src: `/images/books/${id}.svg?v=2`,
+  width: 700,
+  height: 1060,
+  alt,
+});
+
+const spine = (id: string, width: number, height: number) => ({
+  src: `/images/books/${id}-spine.svg?v=5`,
+  width,
+  height,
+});
+
+export const books: Book[] = [
+  {
+    id: "dune",
+    title: "Dune",
+    author: "Frank Herbert",
+    cover: cover("dune", "Dune by Frank Herbert, sand cover with moons and dunes"),
+    spine: spine("dune", 36, 292),
+  },
+  {
+    id: "shoe-dog",
+    title: "Shoe Dog",
+    author: "Phil Knight",
+    cover: cover("shoe-dog", "Shoe Dog by Phil Knight, black cover with gold type"),
+    spine: spine("shoe-dog", 34, 300),
+  },
+  {
+    id: "greenlights",
+    title: "Greenlights",
+    author: "Matthew McConaughey",
+    cover: cover("greenlights", "Greenlights by Matthew McConaughey, green cover with a yellow circle"),
+    spine: spine("greenlights", 40, 286),
+  },
+  {
+    id: "ove",
+    title: "A Man Called Ove",
+    author: "Fredrik Backman",
+    cover: cover("ove", "A Man Called Ove by Fredrik Backman, cream cover with a navy house"),
+    spine: spine("ove", 34, 276),
+  },
+  {
+    id: "morrie",
+    title: "Tuesdays with Morrie",
+    author: "Mitch Albom",
+    cover: cover("morrie", "Tuesdays with Morrie by Mitch Albom, cream cover with burgundy type"),
+    spine: spine("morrie", 40, 286),
+  },
+  {
+    id: "psycho",
+    title: "Psycho-Cybernetics",
+    author: "Maxwell Maltz",
+    cover: cover("psycho", "Psycho-Cybernetics by Maxwell Maltz, dark cover with teal rings"),
+    spine: spine("psycho", 32, 292),
+  },
+  {
+    id: "genius-makers",
+    title: "Genius Makers",
+    author: "Cade Metz",
+    cover: cover("genius-makers", "Genius Makers by Cade Metz, black cover with a network of colored nodes"),
+    spine: spine("genius-makers", 38, 280),
+  },
+  {
+    id: "rich-dad",
+    title: "Rich Dad Poor Dad",
+    author: "Robert Kiyosaki",
+    cover: cover("rich-dad", "Rich Dad Poor Dad by Robert Kiyosaki, gold and purple split cover"),
+    spine: spine("rich-dad", 48, 258),
+  },
 ];

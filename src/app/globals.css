@@ -1,41 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
 }
 
 :root {
-  --bg: #09090b;
-  --surface: #101013;
+  --frame-max-w: 48rem;
+  --bg: #070708;
+  --surface: #101012;
   --surface-2: #18181b;
-  --border-soft: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.16);
-  --text: #fafafa;
+  --border-soft: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.22);
+  --text: #f4f4f5;
   --text-muted: #a1a1aa;
   --text-dim: #71717a;
   --invert: #fafafa;
   --invert-text: #09090b;
-  --grid-line: rgba(255, 255, 255, 0.03);
-  --mountain-opacity: 0.6;
-  --section-line: rgba(255, 255, 255, 0.14);
-}
-
-:root.light {
-  --bg: #fafafa;
-  --surface: #ffffff;
-  --surface-2: #f4f4f5;
-  --border-soft: rgba(0, 0, 0, 0.12);
-  --border-hover: rgba(0, 0, 0, 0.22);
-  --text: #09090b;
-  --text-muted: #3f3f46;
-  --text-dim: #52525b;
-  --invert: #09090b;
-  --invert-text: #fafafa;
-  --grid-line: rgba(0, 0, 0, 0.06);
-  --mountain-opacity: 0.08;
-  --section-line: rgba(0, 0, 0, 0.18);
+  --row: rgba(255, 255, 255, 0.045);
+  --row-strong: rgba(255, 255, 255, 0.07);
+  --verse-text-blend: screen;
+  --footer-earth-deep: 19 54 103;
+  --footer-earth-ocean: 35 112 190;
+  --footer-earth-light: 169 220 249;
+  --footer-earth-cloud: 246 251 255;
 }
 
 * {
@@ -49,70 +38,32 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-sans);
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background 0.5s ease, color 0.5s ease;
 }
 
 ::selection {
   background: var(--border-hover);
 }
 
-.mountain-bg {
-  position: fixed;
-  inset-inline: 0;
-  bottom: 0;
-  height: 70vh;
-  z-index: 0;
-  background-image: url("/mountains.png");
-  background-size: cover;
-  background-position: center bottom;
-  opacity: var(--mountain-opacity);
-  pointer-events: none;
-  mask-image: linear-gradient(to top, black 10%, transparent 95%);
-  -webkit-mask-image: linear-gradient(to top, black 10%, transparent 95%);
-  transition: opacity 0.5s ease;
+.section-block {
+  scroll-margin-top: 5rem;
+  border-top: 1px dashed var(--border-soft);
+  padding-top: 1.5rem;
 }
 
-.grid-bg {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(ellipse 70% 80% at 30% 50%, black 20%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 30% 50%, black 20%, transparent 80%);
+.live-badge {
+  background: rgba(251, 191, 36, 0.16);
+  color: #fbbf24;
 }
 
-.glow-orb {
-  background: radial-gradient(
-    ellipse 60% 70% at 60% 45%,
-    rgba(110, 100, 200, 0.1) 0%,
-    transparent 65%
-  );
-}
-
-.text-gradient {
-  background: linear-gradient(160deg, var(--text) 30%, var(--text-muted) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.section-line {
-  height: 1px;
-  width: 3.5rem;
-  flex-shrink: 0;
-  background: var(--section-line);
+.section-heading {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .dev-dots span {
@@ -138,63 +89,86 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .dev-dots span {
-    animation: none;
-    opacity: 1;
+@keyframes sticker-nudge {
+  0% {
+    rotate: var(--rest, 0deg);
+    scale: 1;
+  }
+  35% {
+    rotate: calc(var(--rest, 0deg) + 8deg);
+    scale: 1.04;
+  }
+  70% {
+    rotate: calc(var(--rest, 0deg) - 6deg);
+    scale: 1.02;
+  }
+  100% {
+    rotate: var(--rest, 0deg);
+    scale: 1;
   }
 }
 
-.project-card {
-  transition:
-    transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
-    box-shadow 0.45s cubic-bezier(0.23, 1, 0.32, 1),
-    border-color 0.35s ease;
+.sticker-nudge {
+  animation: sticker-nudge 0.55s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--border-hover);
-  box-shadow:
-    0 24px 48px -16px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+.blueprint-bg {
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.045) 10px, rgba(255, 255, 255, 0.045) 11px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.045) 10px, rgba(255, 255, 255, 0.045) 11px);
+  opacity: 0.45;
+  transition: opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-:root.light .project-card:hover {
-  box-shadow:
-    0 24px 48px -16px rgba(0, 0, 0, 0.12),
-    0 0 0 1px rgba(0, 0, 0, 0.06);
-}
-
-.project-card-media {
-  transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.project-card:hover .project-card-media {
-  transform: scale(1.04);
-}
-
-.project-card-overlay {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.project-card:hover .project-card-overlay {
+.group:hover .blueprint-bg {
   opacity: 1;
 }
 
+.frame-gutter-dots {
+  background-image: radial-gradient(color-mix(in oklab, var(--text-dim) 50%, transparent) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.frame-gutter-dots-lit {
+  background-image: radial-gradient(color-mix(in oklab, #e4b15a 82%, transparent) 1px, transparent 1px);
+  background-size: 14px 14px;
+  opacity: var(--gutter-lit, 0);
+  mask-image: radial-gradient(
+    circle 7.5rem at var(--gutter-x, -50%) var(--gutter-y, -50%),
+    black,
+    transparent 70%
+  );
+  transition: opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.activity-fit .react-activity-calendar {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.activity-fit .react-activity-calendar__scroll-container {
+  max-width: 100%;
+  overflow: hidden !important;
+}
+
+.activity-fit .react-activity-calendar__calendar {
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .project-card,
-  .project-card-media,
-  .project-card-overlay {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .dev-dots span,
+  .sticker-nudge {
+    animation: none;
+  }
+
+  .frame-gutter-dots-lit,
+  .blueprint-bg {
     transition: none;
-  }
-
-  .project-card:hover {
-    transform: none;
-  }
-
-  .project-card:hover .project-card-media {
-    transform: none;
   }
 }

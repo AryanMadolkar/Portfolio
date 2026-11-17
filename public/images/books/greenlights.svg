@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1060" viewBox="0 0 700 1060">
+  <rect width="700" height="1060" fill="#111"/>
+  
+  <rect width="700" height="1060" fill="#0e3a28"/>
+  <circle cx="350" cy="430" r="230" fill="#e4ef74"/>
+  <circle cx="350" cy="430" r="168" fill="none" stroke="#0e3a28" stroke-width="3" opacity="0.35"/>
+  <text x="350" y="400" fill="#14321f" font-family="Georgia, serif" font-size="64" letter-spacing="6" text-anchor="middle">GREEN</text>
+  <text x="350" y="478" fill="#14321f" font-family="Georgia, serif" font-size="64" letter-spacing="4" text-anchor="middle">LIGHTS</text>
+  <text x="350" y="820" fill="#f4f7df" font-family="Georgia, serif" font-size="22" letter-spacing="5" text-anchor="middle">MATTHEW</text>
+  <text x="350" y="858" fill="#f4f7df" font-family="Georgia, serif" font-size="22" letter-spacing="5" text-anchor="middle">MCCONAUGHEY</text>
+
+  <rect width="18" height="1060" fill="#000" opacity="0.28"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="292" viewBox="0 0 36 292">
+  <rect width="36" height="292" fill="#161616"/>
+  <rect width="3" height="292" fill="#000" opacity="0.5"/>
+  <rect x="33" width="3" height="292" fill="#fff" opacity="0.08"/>
+  <rect x="7" y="18" width="22" height="112" fill="#f3efe6"/>
+  <g fill="#5c4788" font-family="Georgia, 'Times New Roman', serif" font-size="17" text-anchor="middle">
+    <text x="18" y="42">D</text>
+    <text x="18" y="66">U</text>
+    <text x="18" y="90">N</text>
+    <text x="18" y="114">E</text>
+  </g>
+  <rect x="5" y="142" width="26" height="30" fill="#e2b15a"/>
+  <path d="M5 164 C11 154 16 168 22 156 C26 150 31 158 31 166 V172 H5 Z" fill="#c4892a"/>
+  <text x="18" y="232" fill="#f4efe6" font-family="Georgia, 'Times New Roman', serif" font-size="11" letter-spacing="1.2" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 18 232)">FRANK HERBERT</text>
+</svg>

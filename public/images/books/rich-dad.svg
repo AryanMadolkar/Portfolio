@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1060" viewBox="0 0 700 1060">
+  <rect width="700" height="1060" fill="#111"/>
+  
+  <rect width="350" height="1060" fill="#f0d48a"/>
+  <rect x="350" width="350" height="1060" fill="#241c3a"/>
+  <text x="175" y="430" fill="#241c3a" font-family="Georgia, serif" font-size="72" text-anchor="middle">RICH</text>
+  <text x="175" y="520" fill="#241c3a" font-family="Georgia, serif" font-size="72" text-anchor="middle">DAD</text>
+  <text x="525" y="430" fill="#f0d48a" font-family="Georgia, serif" font-size="72" text-anchor="middle">POOR</text>
+  <text x="525" y="520" fill="#f0d48a" font-family="Georgia, serif" font-size="72" text-anchor="middle">DAD</text>
+  <rect y="980" width="700" height="80" fill="#111"/>
+  <text x="350" y="1028" fill="#f0d48a" font-family="Georgia, serif" font-size="20" letter-spacing="4" text-anchor="middle">ROBERT KIYOSAKI</text>
+  <rect x="348" width="4" height="1060" fill="#111"/>
+
+  <rect width="18" height="1060" fill="#000" opacity="0.28"/>
+</svg>

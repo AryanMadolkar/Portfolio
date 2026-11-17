@@ -1,80 +1,76 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import type { IconType } from "react-icons";
 import {
-  SiReact,
-  SiTypescript,
-  SiJavascript,
+  SiClerk,
+  SiExpress,
+  SiFramer,
+  SiGooglegemini,
+  SiGreensock,
   SiNextdotjs,
   SiNodedotjs,
-  SiPython,
-  SiTailwindcss,
-  SiPostgresql,
-  SiSupabase,
-  SiRedis,
-  SiPrisma,
-  SiDocker,
   SiOpenai,
+  SiPostgresql,
+  SiPrisma,
+  SiPython,
+  SiRazorpay,
+  SiReact,
+  SiReacthookform,
+  SiReactquery,
+  SiRedis,
+  SiScikitlearn,
+  SiShadcnui,
+  SiSupabase,
+  SiTailwindcss,
+  SiTypescript,
   SiVercel,
   SiVite,
-  SiThreedotjs,
-  SiClerk,
+  SiZod,
 } from "react-icons/si";
-import { FiBox, FiBarChart2, FiActivity, FiCpu, FiDatabase } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa6";
+import { FiBox, FiBarChart2, FiCpu, FiDatabase, FiKey } from "react-icons/fi";
 
-type TechMeta = { icon: IconType; color: string; lightColor?: string };
+type TechMeta = { icon: IconType; color: string };
 
 const TECH: Record<string, TechMeta> = {
-  React: { icon: SiReact, color: "#61DAFB" },
   TypeScript: { icon: SiTypescript, color: "#3178C6" },
-  JavaScript: { icon: SiJavascript, color: "#F7DF1E", lightColor: "#CA8A04" },
-  "Next.js": { icon: SiNextdotjs, color: "#FFFFFF", lightColor: "#171717" },
-  "Node.js": { icon: SiNodedotjs, color: "#5FA04E" },
   Python: { icon: SiPython, color: "#3776AB" },
-  "Tailwind CSS": { icon: SiTailwindcss, color: "#38BDF8", lightColor: "#0284C7" },
-  PostgreSQL: { icon: SiPostgresql, color: "#4169E1" },
-  Supabase: { icon: SiSupabase, color: "#3ECF8E", lightColor: "#059669" },
-  Redis: { icon: SiRedis, color: "#FF4438" },
-  Prisma: { icon: SiPrisma, color: "#5A67D8" },
-  Docker: { icon: SiDocker, color: "#2496ED" },
-  OpenAI: { icon: SiOpenai, color: "#FFFFFF", lightColor: "#171717" },
-  Vercel: { icon: SiVercel, color: "#FFFFFF", lightColor: "#171717" },
+  "Next.js": { icon: SiNextdotjs, color: "#FFFFFF" },
+  React: { icon: SiReact, color: "#61DAFB" },
+  "Tailwind CSS": { icon: SiTailwindcss, color: "#38BDF8" },
+  "shadcn/ui": { icon: SiShadcnui, color: "#FFFFFF" },
   Vite: { icon: SiVite, color: "#646CFF" },
-  "Three.js": { icon: SiThreedotjs, color: "#FFFFFF", lightColor: "#171717" },
-  Clerk: { icon: SiClerk, color: "#6C47FF" },
+  Motion: { icon: SiFramer, color: "#FFFFFF" },
+  GSAP: { icon: SiGreensock, color: "#88CE02" },
+  "TanStack Query": { icon: SiReactquery, color: "#FF4154" },
+  Recharts: { icon: FiBarChart2, color: "#A1A1AA" },
+  "Node.js": { icon: SiNodedotjs, color: "#5FA04E" },
+  Express: { icon: SiExpress, color: "#FFFFFF" },
+  Prisma: { icon: SiPrisma, color: "#5A67D8" },
+  PostgreSQL: { icon: SiPostgresql, color: "#4169E1" },
+  Neon: { icon: FiDatabase, color: "#00E599" },
+  Supabase: { icon: SiSupabase, color: "#3ECF8E" },
   Convex: { icon: FiDatabase, color: "#EE342F" },
-  XGBoost: { icon: FiCpu, color: "#A1A1AA", lightColor: "#52525B" },
-  BullMQ: { icon: FiBox, color: "#A1A1AA", lightColor: "#52525B" },
-  "Data Viz": { icon: FiBarChart2, color: "#A1A1AA", lightColor: "#52525B" },
-  Dashboard: { icon: FiBarChart2, color: "#A1A1AA", lightColor: "#52525B" },
-  "Live Stats": { icon: FiActivity, color: "#A1A1AA", lightColor: "#52525B" },
-  Predictions: { icon: FiActivity, color: "#A1A1AA", lightColor: "#52525B" },
+  Redis: { icon: SiRedis, color: "#FF4438" },
+  BullMQ: { icon: FiBox, color: "#E11D48" },
+  "Auth.js": { icon: FiKey, color: "#A1A1AA" },
+  Clerk: { icon: SiClerk, color: "#6C47FF" },
+  OpenAI: { icon: SiOpenai, color: "#FFFFFF" },
+  Gemini: { icon: SiGooglegemini, color: "#8E75FF" },
+  XGBoost: { icon: FiCpu, color: "#A1A1AA" },
+  "scikit-learn": { icon: SiScikitlearn, color: "#F7931E" },
+  Zod: { icon: SiZod, color: "#3E67B1" },
+  "React Hook Form": { icon: SiReacthookform, color: "#EC5990" },
+  Razorpay: { icon: SiRazorpay, color: "#3395FF" },
+  Vercel: { icon: SiVercel, color: "#FFFFFF" },
+  GitHub: { icon: FaGithub, color: "#FFFFFF" },
 };
 
-const FALLBACK: TechMeta = { icon: FiBox, color: "#A1A1AA", lightColor: "#52525B" };
+const FALLBACK: TechMeta = { icon: FiBox, color: "#A1A1AA" };
 
 export function getTech(name: string): TechMeta {
   return TECH[name] ?? FALLBACK;
 }
 
 export function TechIcon({ name, size = 14 }: { name: string; size?: number }) {
-  const [isLight, setIsLight] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsLight(document.documentElement.classList.contains("light"));
-    check();
-
-    const observer = new MutationObserver(check);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => observer.disconnect();
-  }, []);
-
-  const { icon: Icon, color, lightColor } = getTech(name);
-  const resolvedColor = isLight && lightColor ? lightColor : color;
-
-  return <Icon size={size} style={{ color: resolvedColor }} aria-label={name} />;
+  const { icon: Icon, color } = getTech(name);
+  return <Icon size={size} style={{ color }} aria-label={name} />;
 }
