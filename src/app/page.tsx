@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/Navbar";
 import { Menu } from "@/components/Menu";
 import { SectionRail } from "@/components/SectionRail";
 import { Hero } from "@/components/Hero";
@@ -13,10 +12,9 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <Navbar />
       <SectionRail />
       <Menu />
-      <main id="top" className="mx-auto w-full max-w-3xl px-5 pt-16 pb-8 sm:pl-20 xl:pl-5">
+      <main id="top" className="mx-auto w-full max-w-3xl px-5 pt-8 pb-8 sm:pl-20 xl:pl-5">
         <div className="flex flex-col gap-10">
           <Hero />
           <Projects />
