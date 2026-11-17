@@ -41,13 +41,22 @@ export function Bookshelf() {
   useEffect(() => {
     if (!activeId) return;
     const book = root.current?.querySelector<HTMLElement>(`[data-bookshelf-book="${CSS.escape(activeId)}"]`);
-    const position = book?.parentElement;
     const railElement = rail.current;
-    if (!position || !railElement) return;
-    const max = railElement.scrollWidth - railElement.clientWidth;
-    const centered = position.offsetLeft - (railElement.clientWidth - position.offsetWidth) / 2;
-    const next = Math.max(0, Math.min(max, centered));
-    if (Math.abs(next - railElement.scrollLeft) > 1) railElement.scrollLeft = next;
+    if (!book || !railElement) return;
+    const bookStyle = getComputedStyle(book);
+    const height = Number.parseFloat(bookStyle.getPropertyValue("--book-height")) || book.offsetHeight;
+    const ratio = Number.parseFloat(bookStyle.getPropertyValue("--cover-ratio")) || 0.66;
+    const scale = Number.parseFloat(getComputedStyle(railElement).getPropertyValue("--book-scale")) || 1;
+    const openWidth = height * scale * ratio + 5;
+    const railRect = railElement.getBoundingClientRect();
+    const bookLeft = book.getBoundingClientRect().left - railRect.left;
+    const bookRight = bookLeft + openWidth;
+    const padding = 16;
+    if (bookLeft < padding) {
+      railElement.scrollLeft += bookLeft - padding;
+    } else if (bookRight > railElement.clientWidth - padding) {
+      railElement.scrollLeft += bookRight - (railElement.clientWidth - padding);
+    }
   }, [activeId]);
 
   return (

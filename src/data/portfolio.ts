@@ -161,10 +161,11 @@ export const projects: Project[] = [
     summary: "ML scores for package health",
     description:
       "Predictive dependency health platform that scans GitHub repos and uses XGBoost ML to score packages 0–100.",
-    href: "https://github.com/aryanpachori/Beacon",
+    href: "https://beacon.forgefastlabs.com",
     repo: "https://github.com/aryanpachori/Beacon",
     tags: ["Node.js", "Python", "XGBoost", "BullMQ", "PostgreSQL"],
     accent: "from-indigo-500/20",
+    live: true,
     image: "/projects/beacon.png",
     preview: {
       headline: "Beacon.",
