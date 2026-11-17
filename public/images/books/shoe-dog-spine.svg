@@ -1,8 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="34" height="300" viewBox="0 0 34 300">
-  <rect width="34" height="300" fill="#14171c"/>
-  <rect width="3" height="300" fill="#000" opacity="0.55"/>
-  <rect x="31" width="3" height="300" fill="#fff" opacity="0.06"/>
-  <text x="17" y="78" fill="#c9852a" font-family="Georgia, 'Times New Roman', serif" font-size="13" letter-spacing="1.2" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 17 78)">PHIL KNIGHT</text>
-  <path d="M9 148 C14 140 22 139 27 148" fill="none" stroke="#e23b2f" stroke-width="2.4" stroke-linecap="round"/>
-  <text x="17" y="214" fill="#e0a04a" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="1.8" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 17 214)">SHOE DOG</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="308" viewBox="0 0 46 308">
+  <rect width="46" height="308" fill="#12151a"/>
+  <text x="23" y="86" fill="#d4923a" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="700" letter-spacing="1.2" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 23 86)">PHIL KNIGHT</text>
+  <path d="M12 168 C22 150 34 150 40 166" fill="none" stroke="#e10600" stroke-width="5" stroke-linecap="round"/>
+  <text x="23" y="248" fill="#e0a24a" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700" letter-spacing="1.4" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 23 248)">SHOE DOG</text>
 </svg>

@@ -246,15 +246,15 @@ export type Book = {
   spine: { src: string; width: number; height: number };
 };
 
-const cover = (id: string, alt: string) => ({
-  src: `/images/books/${id}.svg?v=2`,
-  width: 700,
-  height: 1060,
+const cover = (id: string, width: number, height: number, alt: string) => ({
+  src: `/images/books/${id}-cover.jpg?v=1`,
+  width,
+  height,
   alt,
 });
 
 const spine = (id: string, width: number, height: number) => ({
-  src: `/images/books/${id}-spine.svg?v=5`,
+  src: `/images/books/${id}-spine.svg?v=8`,
   width,
   height,
 });
@@ -264,56 +264,70 @@ export const books: Book[] = [
     id: "dune",
     title: "Dune",
     author: "Frank Herbert",
-    cover: cover("dune", "Dune by Frank Herbert, sand cover with moons and dunes"),
-    spine: spine("dune", 36, 292),
+    cover: cover("dune", 331, 500, "Dune by Frank Herbert"),
+    spine: spine("dune", 40, 312),
   },
   {
     id: "shoe-dog",
     title: "Shoe Dog",
     author: "Phil Knight",
-    cover: cover("shoe-dog", "Shoe Dog by Phil Knight, black cover with gold type"),
-    spine: spine("shoe-dog", 34, 300),
+    cover: cover("shoe-dog", 331, 500, "Shoe Dog by Phil Knight"),
+    spine: spine("shoe-dog", 46, 308),
   },
   {
     id: "greenlights",
     title: "Greenlights",
     author: "Matthew McConaughey",
-    cover: cover("greenlights", "Greenlights by Matthew McConaughey, green cover with a yellow circle"),
-    spine: spine("greenlights", 40, 286),
+    cover: cover("greenlights", 318, 457, "Greenlights by Matthew McConaughey"),
+    spine: spine("greenlights", 42, 304),
   },
   {
     id: "ove",
     title: "A Man Called Ove",
     author: "Fredrik Backman",
-    cover: cover("ove", "A Man Called Ove by Fredrik Backman, cream cover with a navy house"),
-    spine: spine("ove", 34, 276),
+    cover: cover("ove", 322, 500, "A Man Called Ove by Fredrik Backman"),
+    spine: spine("ove", 36, 292),
   },
   {
     id: "morrie",
     title: "Tuesdays with Morrie",
     author: "Mitch Albom",
-    cover: cover("morrie", "Tuesdays with Morrie by Mitch Albom, cream cover with burgundy type"),
-    spine: spine("morrie", 40, 286),
+    cover: cover("morrie", 342, 500, "Tuesdays with Morrie by Mitch Albom"),
+    spine: spine("morrie", 38, 300),
   },
   {
     id: "psycho",
     title: "Psycho-Cybernetics",
     author: "Maxwell Maltz",
-    cover: cover("psycho", "Psycho-Cybernetics by Maxwell Maltz, dark cover with teal rings"),
-    spine: spine("psycho", 32, 292),
+    cover: cover("psycho", 297, 475, "Psycho-Cybernetics by Maxwell Maltz"),
+    spine: spine("psycho", 34, 304),
   },
   {
     id: "genius-makers",
     title: "Genius Makers",
     author: "Cade Metz",
-    cover: cover("genius-makers", "Genius Makers by Cade Metz, black cover with a network of colored nodes"),
-    spine: spine("genius-makers", 38, 280),
+    cover: cover("genius-makers", 331, 500, "Genius Makers by Cade Metz"),
+    spine: spine("genius-makers", 42, 294),
+  },
+  {
+    id: "book-of-elon",
+    title: "The Book of Elon",
+    author: "Eric Jorgenson",
+    cover: cover("book-of-elon", 700, 1082, "The Book of Elon by Eric Jorgenson"),
+    spine: spine("book-of-elon", 36, 306),
+  },
+  {
+    id: "steve-jobs",
+    title: "Steve Jobs",
+    author: "Walter Isaacson",
+    cover: cover("steve-jobs", 295, 445, "Steve Jobs by Walter Isaacson"),
+    spine: spine("steve-jobs", 36, 310),
   },
   {
     id: "rich-dad",
     title: "Rich Dad Poor Dad",
     author: "Robert Kiyosaki",
-    cover: cover("rich-dad", "Rich Dad Poor Dad by Robert Kiyosaki, gold and purple split cover"),
-    spine: spine("rich-dad", 48, 258),
+    cover: cover("rich-dad", 333, 500, "Rich Dad Poor Dad by Robert Kiyosaki"),
+    spine: spine("rich-dad", 50, 300),
   },
 ];

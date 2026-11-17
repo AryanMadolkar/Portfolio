@@ -1,5 +1,6 @@
 .shelf {
   --book-scale: 1;
+  position: relative;
   margin: 0 auto;
   padding: 8px 0 16px;
 }
@@ -38,7 +39,8 @@
   border: 0;
   -webkit-tap-highlight-color: transparent;
   outline: none;
-  transition: width 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  perspective: 900px;
+  transition: width 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .book[data-open="true"] {
@@ -58,17 +60,8 @@
   display: block;
   overflow: clip;
   pointer-events: none;
-  transform: translateY(0);
-  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.45));
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.book[data-hover="true"] .artwork {
-  transform: translateY(-10px);
-}
-
-.book[data-open="true"] .artwork {
-  transform: none;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 7px 5px rgba(0, 0, 0, 0.4));
 }
 
 .volume {
@@ -76,12 +69,7 @@
   inset: 0 auto 0 2px;
   display: block;
   width: calc(var(--book-height) * var(--book-scale) * var(--cover-ratio));
-  opacity: 0;
-  transition: opacity 0.18s ease;
-}
-
-.book[data-open="true"] .volume {
-  opacity: 1;
+  transform-origin: left center;
 }
 
 .cover,
@@ -109,24 +97,17 @@
 }
 
 .spineImage {
-  object-fit: fill;
+  object-fit: cover;
 }
 
 .spine {
   inset: 0 auto 0 2px;
   width: var(--depth);
   overflow: hidden;
-  border-radius: 3px;
-  opacity: 1;
-  transition: opacity 0.18s ease;
+  border-radius: 1px 1px 0 0;
 }
 
-.book[data-open="true"] .spine {
-  opacity: 0;
-}
-
-.cover::after,
-.spine::after {
+.cover::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -135,12 +116,51 @@
   pointer-events: none;
 }
 
+.stack {
+  width: max-content;
+  margin: 0 auto;
+}
+
 .baseline {
-  height: 12px;
-  margin: 0 4px;
-  border-radius: 999px;
-  background: #2c2c31;
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.45);
+  height: 2px;
+  background: #4a4a50;
+}
+
+.headingRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.headingRow .section-heading {
+  margin-bottom: 0.35rem;
+}
+
+.note {
+  width: 8.5rem;
+  margin: 0 0 0.2rem;
+  color: #efeae2;
+  font-family: var(--font-caveat), "Segoe Script", cursive;
+  font-size: 1.45rem;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+
+.note svg {
+  display: block;
+  width: 4.5rem;
+  height: 2.2rem;
+  margin-top: 0.15rem;
+  margin-left: 0.2rem;
+}
+
+@media (max-width: 720px) {
+  .note {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -156,13 +176,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .book,
-  .artwork,
-  .volume,
-  .spine {
+  .volume {
     transition: none;
-  }
-
-  .book[data-hover="true"] .artwork {
-    transform: none;
   }
 }

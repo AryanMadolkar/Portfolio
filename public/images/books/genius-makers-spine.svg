@@ -1,18 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="38" height="280" viewBox="0 0 38 280">
-  <rect width="38" height="280" fill="#10141c"/>
-  <rect width="3" height="280" fill="#000" opacity="0.45"/>
-  <rect x="35" width="3" height="280" fill="#fff" opacity="0.08"/>
-  <text x="19" y="78" fill="#f4f4f5" font-family="Georgia, 'Times New Roman', serif" font-size="12" letter-spacing="1.1" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 19 78)">GENIUS MAKERS</text>
-  <g transform="translate(19 150)">
-    <line x1="-8" y1="0" x2="0" y2="-7" stroke="#3a4458" stroke-width="1"/>
-    <line x1="0" y1="-7" x2="8" y2="0" stroke="#3a4458" stroke-width="1"/>
-    <line x1="0" y1="-7" x2="0" y2="7" stroke="#3a4458" stroke-width="1"/>
-    <line x1="-8" y1="0" x2="0" y2="7" stroke="#3a4458" stroke-width="1"/>
-    <line x1="8" y1="0" x2="0" y2="7" stroke="#3a4458" stroke-width="1"/>
-    <circle cx="-8" cy="0" r="2.3" fill="#7ec8ff"/>
-    <circle cx="0" cy="-7" r="2.3" fill="#e7c15a"/>
-    <circle cx="8" cy="0" r="2.3" fill="#ff8f70"/>
-    <circle cx="0" cy="7" r="2.3" fill="#b9a0ff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="294" viewBox="0 0 42 294">
+  <rect width="42" height="294" fill="#0c1b33"/>
+  <text x="21" y="78" fill="#f4f7fb" font-family="Georgia, 'Times New Roman', serif" font-size="12" letter-spacing="1" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 21 78)">GENIUS MAKERS</text>
+  <g fill="#9ec9ef">
+    <circle cx="14" cy="164" r="2.2"/>
+    <circle cx="21" cy="156" r="2.3"/>
+    <circle cx="28" cy="166" r="2.2"/>
+    <circle cx="21" cy="176" r="2"/>
   </g>
-  <text x="19" y="230" fill="#e7c15a" font-family="Georgia, 'Times New Roman', serif" font-size="10" letter-spacing="1.4" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 19 230)">CADE METZ</text>
+  <text x="21" y="240" fill="#d7e4f2" font-family="Georgia, 'Times New Roman', serif" font-size="10" letter-spacing="1.2" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 21 240)">CADE METZ</text>
 </svg>

@@ -1,10 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="292" viewBox="0 0 32 292">
-  <rect width="32" height="292" fill="#f4f1ea"/>
-  <rect width="3" height="292" fill="#102e34" opacity="0.2"/>
-  <rect x="29" width="3" height="292" fill="#fff" opacity="0.45"/>
-  <circle cx="16" cy="28" r="10" fill="none" stroke="#1f8f86" stroke-width="1.4"/>
-  <circle cx="16" cy="28" r="5" fill="none" stroke="#1f8f86" stroke-width="1.4"/>
-  <circle cx="16" cy="28" r="1.6" fill="#1f8f86"/>
-  <text x="16" y="118" fill="#102e34" font-family="Georgia, 'Times New Roman', serif" font-size="10" letter-spacing="0.3" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 16 118)">PSYCHO-CYBERNETICS</text>
-  <text x="16" y="244" fill="#1f8f86" font-family="Georgia, 'Times New Roman', serif" font-size="9" letter-spacing="0.6" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 16 244)">MAXWELL MALTZ</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="34" height="304" viewBox="0 0 34 304">
+  <rect width="34" height="304" fill="#f7f4ef"/>
+  <rect width="34" height="16" fill="#e10600"/>
+  <rect y="288" width="34" height="16" fill="#e10600"/>
+  <text x="17" y="118" fill="#161616" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="700" letter-spacing="0.3" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 17 118)">PSYCHO-CYBERNETICS</text>
+  <text x="17" y="242" fill="#161616" font-family="Georgia, 'Times New Roman', serif" font-size="9" letter-spacing="0.6" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 17 242)">MAXWELL MALTZ</text>
 </svg>

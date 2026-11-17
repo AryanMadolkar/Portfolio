@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Caveat, DM_Sans, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { siteConfig } from "@/data/portfolio";
 import { FrameGutters } from "@/components/FrameGutters";
 import "./globals.css";
@@ -11,6 +11,11 @@ const dmSans = DM_Sans({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
 });
 
@@ -40,7 +45,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${dmSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+      className={`${dmSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${caveat.variable}`}
     >
       <body className="min-h-screen antialiased">
         <FrameGutters />

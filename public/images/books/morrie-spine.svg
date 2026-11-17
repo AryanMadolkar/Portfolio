@@ -1,8 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="40" height="286" viewBox="0 0 40 286">
-  <rect width="40" height="286" fill="#7a3034"/>
-  <rect width="3" height="286" fill="#000" opacity="0.28"/>
-  <rect x="37" width="3" height="286" fill="#fff" opacity="0.1"/>
-  <text x="20" y="82" fill="#f6efe6" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-style="italic" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 20 82)">tuesdays with Morrie</text>
-  <rect x="9" y="196" width="22" height="64" fill="none" stroke="#f6efe6" stroke-width="1" opacity="0.85"/>
-  <text x="20" y="228" fill="#f6efe6" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-style="italic" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 20 228)">Mitch Albom</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="38" height="300" viewBox="0 0 38 300">
+  <rect width="38" height="300" fill="#8d4a3a"/>
+  <text x="19" y="104" fill="#f6f1e8" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-style="italic" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 19 104)">tuesdays with Morrie</text>
+  <text x="19" y="236" fill="#f6f1e8" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-style="italic" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 19 236)">Mitch Albom</text>
 </svg>
